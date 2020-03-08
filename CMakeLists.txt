@@ -12,11 +12,21 @@ link_directories(
 )
 
 add_library(Engine
+	src/Engine/Component.cpp
+	src/Engine/Component.h
+	src/Engine/Core.cpp
+	src/Engine/Core.h
 	src/Engine/Engine.h
+	src/Engine/Entity.cpp
+	src/Engine/Entity.h
+	src/Engine/Input.cpp
+	src/Engine/Input.h
+	src/Engine/Time.cpp
+	src/Engine/Time.h
 )
 target_link_libraries(Engine SDL2 SDL2main)
 
-add_executable(Game)
+add_executable(Game
 	src/Game/main.cpp
 )
 target_link_libraries(Game Engine)
