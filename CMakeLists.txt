@@ -33,6 +33,8 @@ target_link_libraries(Engine SDL2 SDL2main SDL2_image)
 
 add_executable(Game
 	src/Game/main.cpp
+	src/Game/PlayerMovement.cpp
+	src/Game/PlayerMovement.h
 )
 target_link_libraries(Game Engine)
 

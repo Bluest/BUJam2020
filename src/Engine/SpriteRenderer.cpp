@@ -1,14 +1,18 @@
-#include "SDL_render.h"
-
 #include "Core.h"
 #include "Entity.h"
 #include "Sprite.h"
 #include "SpriteRenderer.h"
 
-void SpriteRenderer::setSprite(const std::shared_ptr<Sprite>& _sprite)
+void SpriteRenderer::addSprite(const std::shared_ptr<Sprite>& _sprite)
 {
-	sprite = _sprite;
+	sprites.push_back(_sprite);
+}
+
+void SpriteRenderer::setSprite(const int& _index)
+{
+	sprite = sprites[_index];
 	frame = { 0, 0, sprite->width, sprite->height };
+	flip = SDL_FLIP_NONE;
 	currentFrame = 0;
 	frameInterval = 1.0f;
 	timer = 0.0f;
@@ -17,6 +21,11 @@ void SpriteRenderer::setSprite(const std::shared_ptr<Sprite>& _sprite)
 void SpriteRenderer::setAnimationSpeed(const float& _framesPerSecond)
 {
 	frameInterval = 1.0f / _framesPerSecond;
+}
+
+void SpriteRenderer::setFlip(SDL_RendererFlip _flip)
+{
+	flip = _flip;
 }
 
 void SpriteRenderer::onDraw(SDL_Renderer* _renderer)
@@ -41,7 +50,7 @@ void SpriteRenderer::onDraw(SDL_Renderer* _renderer)
 				&renderPosition,
 				getEntity()->transform.rotation,
 				&renderCentre,
-				SDL_FLIP_NONE);
+				flip);
 
 			timer += getCore()->getDeltaTime();
 			if (timer > frameInterval)
@@ -61,7 +70,7 @@ void SpriteRenderer::onDraw(SDL_Renderer* _renderer)
 				&renderPosition,
 				getEntity()->transform.rotation,
 				&renderCentre,
-				SDL_FLIP_NONE);
+				flip);
 		}
 	}
 }
