@@ -3,12 +3,12 @@ cmake_minimum_required(VERSION 2.6)
 project(Jam)
 
 include_directories(
-	contrib/include
+	SDL2/include
 	src/Engine
 )
 
 link_directories(
-	${CMAKE_SOURCE_DIR}/contrib/lib
+	${CMAKE_SOURCE_DIR}/SDL2/lib
 )
 
 add_library(Engine
@@ -39,15 +39,15 @@ target_link_libraries(Game Engine)
 add_custom_command(TARGET Game
 	POST_BUILD
 	COMMAND ${CMAKE_COMMAND} -E copy
-		"${PROJECT_SOURCE_DIR}/contrib/lib/SDL2.dll"
+		"${PROJECT_SOURCE_DIR}/SDL2/lib/SDL2.dll"
 		$<TARGET_FILE_DIR:Game>
 	COMMAND ${CMAKE_COMMAND} -E copy
-		"${PROJECT_SOURCE_DIR}/contrib/lib/SDL2_image.dll"
+		"${PROJECT_SOURCE_DIR}/SDL2/lib/SDL2_image.dll"
 		$<TARGET_FILE_DIR:Game>
 	COMMAND ${CMAKE_COMMAND} -E copy
-		"${PROJECT_SOURCE_DIR}/contrib/lib/zlib1.dll"
+		"${PROJECT_SOURCE_DIR}/SDL2/lib/zlib1.dll"
 		$<TARGET_FILE_DIR:Game>
 	COMMAND ${CMAKE_COMMAND} -E copy
-		"${PROJECT_SOURCE_DIR}/contrib/lib/libpng16-16.dll"
+		"${PROJECT_SOURCE_DIR}/SDL2/lib/libpng16-16.dll"
 		$<TARGET_FILE_DIR:Game>
 )
