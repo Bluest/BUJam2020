@@ -25,6 +25,7 @@ void SpriteManager::load(const std::string& _name, const std::string& _file, con
 	sprite->name = _name;
 	sprite->texture = IMG_LoadTexture(renderer, _file.c_str());
 	SDL_QueryTexture(sprite->texture, nullptr, nullptr, &sprite->width, &sprite->height);
+	sprite->width /= _frames;
 	sprite->frames = _frames;
 
 	sprites.push_back(sprite);
