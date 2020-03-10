@@ -1,7 +1,7 @@
 #include <list>
 #include <memory>
 
-#include "SDL2/SDL.h"
+#include "SDL.h"
 
 class Entity;
 class Input;
@@ -18,6 +18,7 @@ public:
 
 	float getDeltaTime();
 	std::shared_ptr<Input> getInput();
+	SDL_Renderer* getRenderer();
 
 private:
 	void draw();

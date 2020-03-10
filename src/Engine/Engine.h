@@ -5,5 +5,7 @@
 #include "Core.h"
 #include "Entity.h"
 #include "Input.h"
+#include "SpriteManager.h"
+#include "SpriteRenderer.h"
 
 #endif // ENGINE_H

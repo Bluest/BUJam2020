@@ -1,4 +1,4 @@
-#include "SDL2/SDL_Timer.h"
+#include "SDL_timer.h"
 
 class Time
 {

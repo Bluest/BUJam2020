@@ -21,10 +21,15 @@ add_library(Engine
 	src/Engine/Entity.h
 	src/Engine/Input.cpp
 	src/Engine/Input.h
+	src/Engine/Sprite.h
+	src/Engine/SpriteManager.cpp
+	src/Engine/SpriteManager.h
+	src/Engine/SpriteRenderer.cpp
+	src/Engine/SpriteRenderer.h
 	src/Engine/Time.cpp
 	src/Engine/Time.h
 )
-target_link_libraries(Engine SDL2 SDL2main)
+target_link_libraries(Engine SDL2 SDL2main SDL2_image)
 
 add_executable(Game
 	src/Game/main.cpp
@@ -35,5 +40,14 @@ add_custom_command(TARGET Game
 	POST_BUILD
 	COMMAND ${CMAKE_COMMAND} -E copy
 		"${PROJECT_SOURCE_DIR}/contrib/lib/SDL2.dll"
+		$<TARGET_FILE_DIR:Game>
+	COMMAND ${CMAKE_COMMAND} -E copy
+		"${PROJECT_SOURCE_DIR}/contrib/lib/SDL2_image.dll"
+		$<TARGET_FILE_DIR:Game>
+	COMMAND ${CMAKE_COMMAND} -E copy
+		"${PROJECT_SOURCE_DIR}/contrib/lib/zlib1.dll"
+		$<TARGET_FILE_DIR:Game>
+	COMMAND ${CMAKE_COMMAND} -E copy
+		"${PROJECT_SOURCE_DIR}/contrib/lib/libpng16-16.dll"
 		$<TARGET_FILE_DIR:Game>
 )

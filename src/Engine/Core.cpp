@@ -44,6 +44,11 @@ std::shared_ptr<Input> Core::getInput()
 	return input;
 }
 
+SDL_Renderer* Core::getRenderer()
+{
+	return renderer;
+}
+
 void Core::run()
 {
 	for (auto it = entities.begin(); it != entities.end(); ++it)
