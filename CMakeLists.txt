@@ -35,6 +35,8 @@ add_executable(Game
 	src/Game/main.cpp
 	src/Game/PlayerMovement.cpp
 	src/Game/PlayerMovement.h
+	src/Game/Game.h
+	src/Game/Game.cpp
 )
 target_link_libraries(Game Engine)
 
