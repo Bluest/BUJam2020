@@ -1,21 +1,29 @@
 #include "Game.h"
+#include "Map.h"
+#include "PlayerMovement.h"
 
 Game::Game()
 {
 	core = Core::init(500, 500, 2, 60.0f);
 	sprites = std::make_shared<SpriteManager>(core->getRenderer());
+	Init();
 }
 
 Game::Game(int _winWidth, int _winHeight, int _scale, float _fpsCap)
 {
 	core = Core::init(_winWidth, _winHeight, _scale, _fpsCap);
+	sprites = std::make_shared<SpriteManager>(core->getRenderer());
+	Init();
 }
 
-void Game::Run()
+void Game::Init()
 {
-	// init map
-	// init player
+	/* init map */
+	std::shared_ptr<Entity> level = core->addEntity(0);
+	std::shared_ptr<Map> map = level->addComponent<Map>();
+	map->LoadFromFile();
 
+	/* init player */
 	sprites->load("player_idle", "../sprites/player_idle.png", 4);
 	sprites->load("player_walk", "../sprites/player_walk.png", 4);
 
@@ -33,6 +41,9 @@ void Game::Run()
 
 	std::shared_ptr<PlayerMovement> playerMovement = player->addComponent<PlayerMovement>();
 	playerMovement->setRenderer(spriteRenderer);
+}
 
+void Game::Run()
+{
 	core->run();
 }

@@ -1,5 +1,4 @@
 #include "Engine.h"
-#include "PlayerMovement.h"
 
 class Game
 {
@@ -13,5 +12,7 @@ public:
 private:
 	std::shared_ptr<Core> core;
 	std::shared_ptr<SpriteManager> sprites;
+
+	void Init();
 
 };
