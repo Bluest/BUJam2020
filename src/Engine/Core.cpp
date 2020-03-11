@@ -41,6 +41,19 @@ std::shared_ptr<Entity> Core::addEntity(const unsigned int& _layer)
 	return entity;
 }
 
+void Core::run()
+{
+	start();
+	time->start();
+
+	while (input->processInput())
+	{
+		update();
+		draw();
+		time->tick();
+	}
+}
+
 float Core::getDeltaTime()
 {
 	return time->getDelta();
@@ -54,19 +67,6 @@ std::shared_ptr<Input> Core::getInput()
 SDL_Renderer* Core::getRenderer()
 {
 	return renderer;
-}
-
-void Core::run()
-{
-	start();
-	time->start();
-
-	while (input->processInput())
-	{
-		update();
-		draw();
-		time->tick();
-	}
 }
 
 void Core::start()
