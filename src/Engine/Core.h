@@ -1,5 +1,6 @@
 #include <list>
 #include <memory>
+#include <vector>
 
 #include "SDL.h"
 
@@ -13,7 +14,7 @@ public:
 	static std::shared_ptr<Core> init(const int& _winW, const int& _winH, const int& _scale, const float& _fpsCap);
 	~Core();
 
-	std::shared_ptr<Entity> addEntity(const int& _layer);
+	std::shared_ptr<Entity> addEntity(const unsigned int& _layer);
 	void run();
 
 	float getDeltaTime();
@@ -21,6 +22,8 @@ public:
 	SDL_Renderer* getRenderer();
 
 private:
+	void start();
+	void update();
 	void draw();
 
 	SDL_Window* window;
@@ -30,5 +33,5 @@ private:
 	std::shared_ptr<Input> input;
 	std::unique_ptr<Time> time;
 
-	std::list<std::shared_ptr<Entity>> entities;
+	std::vector<std::list<std::shared_ptr<Entity>>> layers;
 };
