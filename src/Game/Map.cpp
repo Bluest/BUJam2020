@@ -45,3 +45,9 @@ void Map::onDraw(SDL_Renderer* _renderer)
 		}
 	}
 }
+
+
+Tile Map::GetTile(int x, int y)
+{
+	return tiles[x][y];
+}
