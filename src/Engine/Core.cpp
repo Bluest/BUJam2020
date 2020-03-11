@@ -14,6 +14,7 @@ std::shared_ptr<Core> Core::init(const int& _winW, const int& _winH, const int& 
 	core->self = core;
 	core->input = std::make_shared<Input>();
 	core->time = std::make_unique<Time>(_fpsCap);
+	core->layers.resize(1);
 
 	return core;
 }
@@ -25,14 +26,32 @@ Core::~Core()
 	SDL_Quit();
 }
 
-std::shared_ptr<Entity> Core::addEntity(const int& _layer)
+std::shared_ptr<Entity> Core::addEntity(const unsigned int& _layer)
 {
+	if (_layer > layers.size())
+	{
+		layers.resize(_layer + 1);
+	}
+
 	std::shared_ptr<Entity> entity = std::make_shared<Entity>();
 	entity->self = entity;
 	entity->core = self;
-	entities.push_back(entity);
+	layers[_layer].push_back(entity);
 
 	return entity;
+}
+
+void Core::run()
+{
+	start();
+	time->start();
+
+	while (input->processInput())
+	{
+		update();
+		draw();
+		time->tick();
+	}
 }
 
 float Core::getDeltaTime()
@@ -50,25 +69,25 @@ SDL_Renderer* Core::getRenderer()
 	return renderer;
 }
 
-void Core::run()
+void Core::start()
 {
-	for (auto it = entities.begin(); it != entities.end(); ++it)
+	for (size_t currentLayer = 0; currentLayer < layers.size(); ++currentLayer)
 	{
-		(*it)->start();
+		for (auto it = layers[currentLayer].begin(); it != layers[currentLayer].end(); ++it)
+		{
+			(*it)->start();
+		}
 	}
+}
 
-	time->start();
-
-	while (input->processInput())
+void Core::update()
+{
+	for (size_t currentLayer = 0; currentLayer < layers.size(); ++currentLayer)
 	{
-		for (auto it = entities.begin(); it != entities.end(); ++it)
+		for (auto it = layers[currentLayer].begin(); it != layers[currentLayer].end(); ++it)
 		{
 			(*it)->update();
 		}
-
-		draw();
-
-		time->tick();
 	}
 }
 
@@ -77,9 +96,12 @@ void Core::draw()
 	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 	SDL_RenderClear(renderer);
 
-	for (auto it = entities.begin(); it != entities.end(); ++it)
+	for (size_t currentLayer = 0; currentLayer < layers.size(); ++currentLayer)
 	{
-		(*it)->draw(renderer);
+		for (auto it = layers[currentLayer].begin(); it != layers[currentLayer].end(); ++it)
+		{
+			(*it)->draw(renderer);
+		}
 	}
 
 	SDL_RenderPresent(renderer);

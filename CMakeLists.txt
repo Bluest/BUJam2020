@@ -12,6 +12,8 @@ link_directories(
 )
 
 add_library(Engine
+	src/Engine/Camera.cpp
+	src/Engine/Camera.h
 	src/Engine/Component.cpp
 	src/Engine/Component.h
 	src/Engine/Core.cpp
