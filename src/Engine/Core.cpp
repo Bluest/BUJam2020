@@ -3,12 +3,13 @@
 #include "Input.h"
 #include "Time.h"
 
-std::shared_ptr<Core> Core::init(const int& _winW, const int& _winH, const float& _fpsCap)
+std::shared_ptr<Core> Core::init(const int& _winW, const int& _winH, const int& _scale, const float& _fpsCap)
 {
 	std::shared_ptr<Core> core = std::make_shared<Core>();
 
 	SDL_Init(SDL_INIT_VIDEO);
 	SDL_CreateWindowAndRenderer(_winW, _winH, 0, &core->window, &core->renderer);
+	SDL_RenderSetLogicalSize(core->renderer, _winW / _scale, _winH / _scale);
 
 	core->self = core;
 	core->input = std::make_shared<Input>();
@@ -24,7 +25,7 @@ Core::~Core()
 	SDL_Quit();
 }
 
-std::shared_ptr<Entity> Core::addEntity()
+std::shared_ptr<Entity> Core::addEntity(const int& _layer)
 {
 	std::shared_ptr<Entity> entity = std::make_shared<Entity>();
 	entity->self = entity;

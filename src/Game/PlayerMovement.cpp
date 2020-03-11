@@ -18,9 +18,9 @@ void PlayerMovement::onUpdate()
 	getEntity()->transform.position.y += yVelocity;
 	yVelocity += 5.0f * getCore()->getDeltaTime();
 
-	if (getEntity()->transform.position.y > 250.0f)
+	if (getEntity()->transform.position.y > 200.0f)
 	{
-		getEntity()->transform.position.y = 250.0f;
+		getEntity()->transform.position.y = 200.0f;
 		airborne = false;
 	}
 

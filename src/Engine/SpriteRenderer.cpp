@@ -32,10 +32,10 @@ void SpriteRenderer::onDraw(SDL_Renderer* _renderer)
 {
 	if (sprite)
 	{
-		renderPosition.x = getEntity()->transform.position.x - getEntity()->transform.scale.x / 2;
-		renderPosition.y = getEntity()->transform.position.y - getEntity()->transform.scale.y / 2;
-		renderPosition.w = getEntity()->transform.scale.x;
-		renderPosition.h = getEntity()->transform.scale.y;
+		renderPosition.x = getEntity()->transform.position.x - float(sprite->width) / 2;
+		renderPosition.y = getEntity()->transform.position.y - float(sprite->height) / 2;
+		renderPosition.w = float(sprite->width);
+		renderPosition.h = float(sprite->height);
 
 		renderCentre.x = getEntity()->transform.scale.x / 2;
 		renderCentre.y = getEntity()->transform.scale.y / 2;

@@ -10,10 +10,10 @@ class Time;
 class Core
 {
 public:
-	static std::shared_ptr<Core> init(const int& _winW, const int& _winH, const float& _fpsCap);
+	static std::shared_ptr<Core> init(const int& _winW, const int& _winH, const int& _scale, const float& _fpsCap);
 	~Core();
 
-	std::shared_ptr<Entity> addEntity();
+	std::shared_ptr<Entity> addEntity(const int& _layer);
 	void run();
 
 	float getDeltaTime();
