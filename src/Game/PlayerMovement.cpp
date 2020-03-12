@@ -1,9 +1,14 @@
 #include "PlayerMovement.h"
 #include "PlayerCollision.h"
 
-void PlayerMovement::setRenderer(std::shared_ptr<SpriteRenderer> _renderer)
+void PlayerMovement::setRenderer(const std::shared_ptr<SpriteRenderer>& _renderer)
 {
 	renderer = _renderer;
+}
+
+void PlayerMovement::setCollider(const std::shared_ptr<PlayerCollision>& _collider)
+{
+	collider = _collider;
 }
 
 void PlayerMovement::onStart()
