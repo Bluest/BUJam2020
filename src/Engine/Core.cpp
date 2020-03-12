@@ -14,7 +14,6 @@ std::shared_ptr<Core> Core::init(const int& _winW, const int& _winH, const int& 
 	core->self = core;
 	core->input = std::make_shared<Input>();
 	core->time = std::make_unique<Time>(_fpsCap);
-	core->layers.resize(1);
 
 	return core;
 }
@@ -28,7 +27,7 @@ Core::~Core()
 
 std::shared_ptr<Entity> Core::addEntity(const unsigned int& _layer)
 {
-	if (_layer > layers.size())
+	if (_layer + 1 > layers.size())
 	{
 		layers.resize(_layer + 1);
 	}

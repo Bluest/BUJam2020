@@ -14,7 +14,7 @@ void Map::LoadFromFile()
 	{
 		tiles[y].resize(width);
 	}
-		
+
 	for (int y = 0; y < height; ++y)
 	{
 		std::getline(file, line);
@@ -35,19 +35,17 @@ void Map::LoadFromFile()
 	}
 }
 
-void Map::onDraw(SDL_Renderer* _renderer)
+void Map::setTileset(const std::shared_ptr<Sprite>& _tileset)
 {
-	for (size_t y = 0; y < height; ++y)
-	{
-		for (size_t x = 0; x < width; ++x)
-		{
-			//printf("%i", tiles[y][x]);
-		}
-	}
+	tileset = _tileset;
 }
-
 
 Tile Map::GetTile(int x, int y)
 {
 	return tiles[x][y];
+}
+
+void Map::onDraw(SDL_Renderer* _renderer)
+{
+
 }
