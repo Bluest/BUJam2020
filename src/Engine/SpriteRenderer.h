@@ -11,9 +11,11 @@ class SpriteRenderer : public Component
 {
 public:
 	void addSprite(const std::shared_ptr<Sprite>& _sprite);
+
 	void setSprite(const int& _index);
 	void setAnimationSpeed(const float& _framesPerSecond);
-	void setFlip(SDL_RendererFlip _flipState);
+	void setFlip(const SDL_RendererFlip& _flipState);
+	void setRenderOffset(const SDL_FPoint& _offset);
 
 private:
 	void onDraw(SDL_Renderer* _renderer);
@@ -26,6 +28,7 @@ private:
 	float frameInterval;
 	float timer;
 
+	SDL_FPoint renderOffset;
 	SDL_FRect renderPosition;
 	SDL_FPoint renderCentre;
 };

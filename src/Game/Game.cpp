@@ -2,6 +2,7 @@
 #include "Map.h"
 #include "PlayerMovement.h"
 #include "Patrol.h"
+#include "PlayerCollision.h"
 
 Game::Game()
 {
@@ -25,8 +26,10 @@ void Game::Init()
 	map->LoadFromFile();
 
 	/* init player */
-	sprites->load("player_idle", "../sprites/player_idle.png", 4);
-	sprites->load("player_walk", "../sprites/player_walk.png", 4);
+	sprites->load("player_idle1", "../sprites/player_idle1.png", 4);
+	sprites->load("player_walk1", "../sprites/player_walk1.png", 8);
+	sprites->load("player_jump1", "../sprites/player_jump1.png", 20);
+	sprites->load("yellow_block", "../sprites/yellow_block.png", 1);
 
 	std::shared_ptr<Entity> player = core->addEntity(0);
 	player->transform.position.x = 25.0f;
@@ -35,13 +38,15 @@ void Game::Init()
 	player->transform.scale.y = 10.0f;
 
 	std::shared_ptr<SpriteRenderer> spriteRenderer = player->addComponent<SpriteRenderer>();
-	spriteRenderer->addSprite(sprites->use("player_idle"));
-	spriteRenderer->addSprite(sprites->use("player_walk"));
+	spriteRenderer->addSprite(sprites->use("player_idle1"));
+	spriteRenderer->addSprite(sprites->use("player_walk1"));
+	spriteRenderer->addSprite(sprites->use("player_jump1"));
 	spriteRenderer->setSprite(0);
 	spriteRenderer->setAnimationSpeed(5.0f);
 
 	std::shared_ptr<PlayerMovement> playerMovement = player->addComponent<PlayerMovement>();
 	playerMovement->setRenderer(spriteRenderer);
+
 
 	/* init enemy */
 	std::shared_ptr<Entity> enemy = core->addEntity(0);
@@ -59,6 +64,9 @@ void Game::Init()
 	patrol->setRenderer(spriteRenderer);
 	patrol->setMovementSpeed(10.0f);
 	patrol->setEnd(300.0f);
+
+	std::shared_ptr<PlayerCollision> collision = player->addComponent<PlayerCollision>();
+	collision->SetMap(map);
 }
 
 void Game::Run()

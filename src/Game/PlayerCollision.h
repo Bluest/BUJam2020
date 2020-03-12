@@ -22,5 +22,7 @@ private:
 
 public:
 	void UpdateCollisionBox(int _w, int _h);
+	bool CheckTilemapCollision();
+	void SetMap(std::shared_ptr<Map> _map) { m_map = _map; }
 
 };
