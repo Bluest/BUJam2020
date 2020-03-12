@@ -6,7 +6,7 @@
 
 Game::Game()
 {
-	core = Core::init(960, 440, 2, 60.0f);
+	core = Core::init(960, 640, 2, 60.0f);
 	sprites = std::make_shared<SpriteManager>(core->getRenderer());
 	Init();
 }
