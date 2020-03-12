@@ -81,8 +81,8 @@ void PlayerCollision::checkWalkoff()
 
 void PlayerCollision::onStart()
 {
-	playerBox.w = 20.0f;
-	playerBox.h = 15.0f;
+	playerBox.w = 16.0f;
+	playerBox.h = 16.0f;
 
 	previousPosition = getEntity()->transform.position.x - playerBox.w / 2;
 }
