@@ -37,14 +37,16 @@ add_executable(Game
 	src/Game/main.cpp
 	src/Game/PlayerMovement.cpp
 	src/Game/PlayerMovement.h
-	src/Game/Game.h
 	src/Game/Game.cpp
+	src/Game/Game.h
 	src/Game/Map.cpp
 	src/Game/Map.h
-	src/Game/Patrol.h
 	src/Game/Patrol.cpp
-	src/Game/PlayerCollision.h
+	src/Game/Patrol.h
 	src/Game/PlayerCollision.cpp
+	src/Game/PlayerCollision.h
+	src/Game/PlayerState.cpp
+	src/Game/PlayerState.h
 )
 target_link_libraries(Game Engine)
 

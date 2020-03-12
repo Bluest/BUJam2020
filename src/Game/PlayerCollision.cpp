@@ -1,10 +1,16 @@
 #include "PlayerCollision.h"
+#include "PlayerState.h"
 #include "Map.h"
 
 void PlayerCollision::updateCollisionBoxSize(const float& _w, const float& _h)
 {
 	playerBox.w = _w;
 	playerBox.h = _h;
+}
+
+void PlayerCollision::setPlayerState(const std::shared_ptr<PlayerState>& _playerState)
+{
+	playerState = _playerState;
 }
 
 void PlayerCollision::setMap(const std::shared_ptr<Map>& _map)
@@ -56,6 +62,7 @@ void PlayerCollision::downCollision()
 	if (m_map->GetTile(leftX, bottomY).solid || m_map->GetTile(rightX, bottomY).solid)
 	{
 		playerBox.y = float(bottomY * tileSize - playerBox.h);
+		playerState->airborne = false;
 	}
 
 	updateEntityPosition();

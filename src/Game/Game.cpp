@@ -3,6 +3,7 @@
 #include "Patrol.h"
 #include "PlayerCollision.h"
 #include "PlayerMovement.h"
+#include "PlayerState.h"
 
 Game::Game()
 {
@@ -40,11 +41,15 @@ void Game::Init()
 	spriteRenderer->addSprite(sprites->use("player_walk1"));
 	spriteRenderer->addSprite(sprites->use("player_jump1"));
 
+	std::shared_ptr<PlayerState> playerState = player->addComponent<PlayerState>();
+
 	std::shared_ptr<PlayerCollision> playerCollision = player->addComponent<PlayerCollision>();
 	playerCollision->setMap(map);
+	playerCollision->setPlayerState(playerState);
 
 	std::shared_ptr<PlayerMovement> playerMovement = player->addComponent<PlayerMovement>();
 	playerMovement->setRenderer(spriteRenderer);
+	playerMovement->setPlayerState(playerState);
 	playerMovement->setCollider(playerCollision);
 
 	// Enemy
