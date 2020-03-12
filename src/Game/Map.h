@@ -5,7 +5,18 @@ struct Tile
 	enum blockType
 	{
 		EMPTY,
-		WALL
+		BLOCK,
+		PLATFORM,
+		FLOOR,
+		FLOOR_LEFT_EDGE,
+		FLOOR_LEFT_WALL,
+		FLOOR_RIGHT_EDGE,
+		FLOOR_RIGHT_WALL,
+		WALL_LEFT,
+		WALL_RIGHT,
+		CEILING,
+		CEILING_LEFT_WALL,
+		CEILING_RIGHT_WALL
 	};
 
 	blockType type;
@@ -33,5 +44,5 @@ private:
 	std::vector<std::vector<Tile>> tiles;
 	std::shared_ptr<Sprite> tileset;
 	SDL_Rect frame;
-	SDL_FRect renderPosition;
+	SDL_Rect renderPosition;
 };

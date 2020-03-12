@@ -8,6 +8,11 @@ void PlayerCollision::updateCollisionBoxSize(const float& _w, const float& _h)
 	playerBox.h = _h;
 }
 
+void PlayerCollision::setRenderer(const std::shared_ptr<SpriteRenderer>& _renderer)
+{
+	renderer = _renderer;
+}
+
 void PlayerCollision::setPlayerState(const std::shared_ptr<PlayerState>& _playerState)
 {
 	playerState = _playerState;
@@ -21,64 +26,91 @@ void PlayerCollision::setMap(const std::shared_ptr<Map>& _map)
 
 void PlayerCollision::leftCollision()
 {
-	updatePlayerBox();
+	updateBoxEdges();
 
 	if (m_map->GetTile(leftX, topY).solid || m_map->GetTile(leftX, bottomY).solid)
 	{
-		playerBox.x = float(leftX * tileSize + tileSize);
+		playerBox.x = previousPosition;
 	}
-
-	updateEntityPosition();
 }
 
 void PlayerCollision::rightCollision()
 {
-	updatePlayerBox();
+	updateBoxEdges();
 	
 	if (m_map->GetTile(rightX, topY).solid || m_map->GetTile(rightX, bottomY).solid)
 	{
-		playerBox.x = float(rightX * tileSize - playerBox.w);
+		playerBox.x = previousPosition;
 	}
-
-	updateEntityPosition();
 }
 
 void PlayerCollision::upCollision()
 {
-	updatePlayerBox();
+	updateBoxEdges();
 
 	if (m_map->GetTile(leftX, topY).solid || m_map->GetTile(rightX, topY).solid)
 	{
 		playerBox.y = float(topY * tileSize + tileSize);
+		playerState->velocity.y = 0.0f;
 	}
-
-	updateEntityPosition();
 }
 
 void PlayerCollision::downCollision()
 {
-	updatePlayerBox();
+	updateBoxEdges();
 
 	if (m_map->GetTile(leftX, bottomY).solid || m_map->GetTile(rightX, bottomY).solid)
 	{
-		playerBox.y = float(bottomY * tileSize - playerBox.h);
+		playerBox.y = float(bottomY * tileSize - (playerBox.h + 1));
 		playerState->airborne = false;
+		playerState->velocity.y = 0.0f;
+		playerState->updateSprite();
 	}
+}
 
-	updateEntityPosition();
+void PlayerCollision::checkWalkoff()
+{
+	updateBoxEdges();
+
+	if (!m_map->GetTile(leftX, bottomY + 1).solid && !m_map->GetTile(rightX, bottomY + 1).solid)
+	{
+		playerState->airborne = true;
+		playerState->updateSprite();
+	}
 }
 
 void PlayerCollision::onStart()
 {
 	playerBox.w = 20.0f;
-	playerBox.h = 20.0f;
+	playerBox.h = 15.0f;
+
+	previousPosition = getEntity()->transform.position.x - playerBox.w / 2;
 }
 
-void PlayerCollision::updatePlayerBox()
+void PlayerCollision::onUpdate()
 {
 	playerBox.x = getEntity()->transform.position.x - playerBox.w / 2;
-	playerBox.y = getEntity()->transform.position.y - playerBox.h / 2;
+	playerBox.y = getEntity()->transform.position.y - playerBox.h;
 
+	leftCollision();
+	rightCollision();
+	upCollision();
+
+	if (!playerState->airborne)
+	{
+		checkWalkoff();
+	}
+
+	if (playerState->airborne)
+	{
+		downCollision();
+	}
+
+	updateEntityPosition();
+}
+
+void PlayerCollision::updateBoxEdges()
+{
 	leftX = int(playerBox.x / tileSize);
 	rightX = int((playerBox.x + playerBox.w) / tileSize);
 	topY = int(playerBox.y / tileSize);
@@ -88,5 +120,7 @@ void PlayerCollision::updatePlayerBox()
 void PlayerCollision::updateEntityPosition()
 {
 	getEntity()->transform.position.x = playerBox.x + playerBox.w / 2;
-	getEntity()->transform.position.y = playerBox.y + playerBox.h / 2;
+	getEntity()->transform.position.y = playerBox.y + playerBox.h;
+
+	previousPosition = playerBox.x;
 }
