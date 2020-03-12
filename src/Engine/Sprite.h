@@ -1,3 +1,6 @@
+#ifndef SPRITE_H
+#define SPRITE_H
+
 #include <string>
 
 struct SDL_Texture;
@@ -10,3 +13,5 @@ struct Sprite
 	int height = NULL;
 	int frames = NULL;
 };
+
+#endif // SPRITE_H

@@ -31,6 +31,8 @@ void Game::Init()
 	sprites->load("player_jump1", "../sprites/player_jump1.png", 20);
 	sprites->load("yellow_block", "../sprites/yellow_block.png", 1);
 
+	map->setTileset(sprites->use("yellow_block"));
+
 	std::shared_ptr<Entity> player = core->addEntity(0);
 	player->transform.position.x = 70.0f;
 	player->transform.position.y = 70.0f;

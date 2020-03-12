@@ -5,11 +5,10 @@ struct Tile
 	enum blockType
 	{
 		EMPTY,
-		BREAKABLE,
-		REGULAR,
-		DAMAGE
+		WALL
 	};
 
+	blockType type;
 	bool solid = false;
 };
 
@@ -34,4 +33,5 @@ private:
 	std::vector<std::vector<Tile>> tiles;
 	std::shared_ptr<Sprite> tileset;
 	SDL_Rect frame;
+	SDL_FRect renderPosition;
 };
