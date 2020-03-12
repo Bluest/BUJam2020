@@ -41,7 +41,7 @@ void Game::Init()
 	spriteRenderer->addSprite(sprites->use("player_jump1"));
 
 	std::shared_ptr<PlayerCollision> playerCollision = player->addComponent<PlayerCollision>();
-	playerCollision->SetMap(map);
+	playerCollision->setMap(map);
 
 	std::shared_ptr<PlayerMovement> playerMovement = player->addComponent<PlayerMovement>();
 	playerMovement->setRenderer(spriteRenderer);
