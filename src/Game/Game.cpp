@@ -75,6 +75,9 @@ void Game::loadSprites()
 	sprites->load("player_idle1", "../sprites/player_idle1.png", 4);
 	sprites->load("player_walk1", "../sprites/player_walk1.png", 8);
 	sprites->load("player_jump1", "../sprites/player_jump1.png", 20);
+	sprites->load("player_idle2", "../sprites/player_idle2.png", 2);
+	sprites->load("player_walk2", "../sprites/player_walk2.png", 10);
+	sprites->load("player_jump2", "../sprites/player_jump2.png", 20);
 	sprites->load("tileset", "../sprites/tileset.png", 1);
 	sprites->load("background", "../sprites/background.png", 1);
 	sprites->load("enemy1", "../sprites/Kurbeh.png", 10);
