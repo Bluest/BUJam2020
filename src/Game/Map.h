@@ -19,8 +19,8 @@ public:
 
 	const int tileSize = 32;
 
-	const int height = 4;
-	const int width = 4;
+	const int height = 20;
+	const int width = 30;
 
 	void LoadFromFile();
 
@@ -29,8 +29,6 @@ public:
 private:
 
 	void onDraw(SDL_Renderer* _renderer);
-
-
 
 	std::vector<std::vector<Tile>> tiles;
 

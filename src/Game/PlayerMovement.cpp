@@ -1,4 +1,5 @@
 #include "PlayerMovement.h"
+#include "PlayerCollision.h"
 
 void PlayerMovement::setRenderer(std::shared_ptr<SpriteRenderer> _renderer)
 {
@@ -52,12 +53,10 @@ void PlayerMovement::onUpdate()
 		if (!airborne) jump();
 	}
 
-	// Update position
-	getEntity()->transform.position.x += velocity.x * getCore()->getDeltaTime();
-	getEntity()->transform.position.y += velocity.y * getCore()->getDeltaTime();
-
 	// Gravity
 	velocity.y += 200.0f * getCore()->getDeltaTime();
+
+	checkCollision();
 
 	// Hardcoded floor
 	if (getEntity()->transform.position.y > 200.0f)
@@ -68,7 +67,7 @@ void PlayerMovement::onUpdate()
 			airborne = false;
 			updateSprite();
 		}
-
+	
 		getEntity()->transform.position.y = 200.0f;
 		velocity.y = 0.0f;
 	}
@@ -122,5 +121,26 @@ void PlayerMovement::updateSprite()
 			renderer->setSprite(1);
 			renderer->setAnimationSpeed(10.0f);
 		}
+	}
+}
+
+void PlayerMovement::checkCollision()
+{
+	// Store old x position
+	int oldPosition = getEntity()->transform.position.x;
+	// Update x position
+	getEntity()->transform.position.x += velocity.x * getCore()->getDeltaTime();
+	if (getEntity()->getComponent<PlayerCollision>()->CheckTilemapCollision() == true)
+	{
+		getEntity()->transform.position.x = oldPosition;
+	}
+	// Store old y position
+	oldPosition = getEntity()->transform.position.y;
+	// Update y position
+	getEntity()->transform.position.y += velocity.y * getCore()->getDeltaTime();
+	if (getEntity()->getComponent<PlayerCollision>()->CheckTilemapCollision() == true)
+	{
+		getEntity()->transform.position.y = oldPosition;
+		velocity.y = 0.0f;
 	}
 }

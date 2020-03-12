@@ -1,6 +1,7 @@
 #include "Game.h"
 #include "Map.h"
 #include "PlayerMovement.h"
+#include "PlayerCollision.h"
 
 Game::Game()
 {
@@ -27,6 +28,7 @@ void Game::Init()
 	sprites->load("player_idle1", "../sprites/player_idle1.png", 4);
 	sprites->load("player_walk1", "../sprites/player_walk1.png", 8);
 	sprites->load("player_jump1", "../sprites/player_jump1.png", 20);
+	sprites->load("yellow_block", "../sprites/yellow_block.png", 1);
 
 	std::shared_ptr<Entity> player = core->addEntity(0);
 	player->transform.position.x = 125.0f;
@@ -43,6 +45,9 @@ void Game::Init()
 
 	std::shared_ptr<PlayerMovement> playerMovement = player->addComponent<PlayerMovement>();
 	playerMovement->setRenderer(spriteRenderer);
+
+	std::shared_ptr<PlayerCollision> collision = player->addComponent<PlayerCollision>();
+	collision->SetMap(map);
 }
 
 void Game::Run()

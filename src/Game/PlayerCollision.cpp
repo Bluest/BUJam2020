@@ -15,6 +15,11 @@ void PlayerCollision::onStart()
 
 void PlayerCollision::onUpdate()
 {
+
+}
+
+bool PlayerCollision::CheckTilemapCollision()
+{
 	int playerLeft = getEntity()->transform.position.x - (m_playerWidth / 2);
 	int playerRight = getEntity()->transform.position.x + (m_playerWidth / 2);
 	int playerTop = getEntity()->transform.position.y - (m_playerHeight / 2);
@@ -37,13 +42,13 @@ void PlayerCollision::onUpdate()
 		for (int j = top_tile; j <= bottom_tile; j++)
 		{
 			Tile t = m_map->GetTile(i, j);
-			if (t.solid = true)
+			if (t.solid == true)
 			{
 				any_collision = true;
 			}
 		}
 	}
-
+	return any_collision;
 }
 
 void PlayerCollision::UpdateCollisionBox(int _w, int _h)

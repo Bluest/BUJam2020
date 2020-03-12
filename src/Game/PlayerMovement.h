@@ -11,6 +11,7 @@ private:
 
 	void jump();
 	void updateSprite();
+	void checkCollision();
 
 	std::shared_ptr<Input> input;
 	std::shared_ptr<SpriteRenderer> renderer;
