@@ -4,7 +4,7 @@
 
 Game::Game()
 {
-	core = Core::init(500, 500, 2, 60.0f);
+	core = Core::init(960, 640, 2, 60.0f);
 	sprites = std::make_shared<SpriteManager>(core->getRenderer());
 	Init();
 }
@@ -24,8 +24,9 @@ void Game::Init()
 	map->LoadFromFile();
 
 	/* init player */
-	sprites->load("player_idle", "../sprites/player_idle.png", 4);
-	sprites->load("player_walk", "../sprites/player_walk.png", 4);
+	sprites->load("player_idle1", "../sprites/player_idle1.png", 4);
+	sprites->load("player_walk1", "../sprites/player_walk1.png", 8);
+	sprites->load("player_jump1", "../sprites/player_jump1.png", 1);
 
 	std::shared_ptr<Entity> player = core->addEntity(0);
 	player->transform.position.x = 125.0f;
@@ -34,8 +35,9 @@ void Game::Init()
 	player->transform.scale.y = 10.0f;
 
 	std::shared_ptr<SpriteRenderer> spriteRenderer = player->addComponent<SpriteRenderer>();
-	spriteRenderer->addSprite(sprites->use("player_idle"));
-	spriteRenderer->addSprite(sprites->use("player_walk"));
+	spriteRenderer->addSprite(sprites->use("player_idle1"));
+	spriteRenderer->addSprite(sprites->use("player_walk1"));
+	spriteRenderer->addSprite(sprites->use("player_jump1"));
 	spriteRenderer->setSprite(0);
 	spriteRenderer->setAnimationSpeed(5.0f);
 

@@ -20,6 +20,12 @@ void PlayerMovement::onUpdate()
 
 	if (getEntity()->transform.position.y > 200.0f)
 	{
+		if (airborne)
+		{
+			renderer->setSprite(1);
+			renderer->setAnimationSpeed(10.0f);
+		}
+
 		getEntity()->transform.position.y = 200.0f;
 		airborne = false;
 	}
@@ -40,7 +46,7 @@ void PlayerMovement::onUpdate()
 
 	if (input->keyHold(SDLK_a))
 	{
-		getEntity()->transform.position.x -= 100.0f * getCore()->getDeltaTime();
+		getEntity()->transform.position.x -= 20.0f * getCore()->getDeltaTime();
 	}
 
 	if (input->keyPress(SDLK_d))
@@ -59,7 +65,7 @@ void PlayerMovement::onUpdate()
 
 	if (input->keyHold(SDLK_d))
 	{
-		getEntity()->transform.position.x += 100.0f * getCore()->getDeltaTime();
+		getEntity()->transform.position.x += 20.0f * getCore()->getDeltaTime();	
 	}
 
 	if (input->keyPress(SDLK_k))
@@ -72,4 +78,5 @@ void PlayerMovement::jump()
 {
 	yVelocity = -2.0f;
 	airborne = true;
+	renderer->setSprite(2);
 }

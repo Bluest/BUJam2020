@@ -12,7 +12,6 @@ void SpriteRenderer::setSprite(const int& _index)
 {
 	sprite = sprites[_index];
 	frame = { 0, 0, sprite->width, sprite->height };
-	flip = SDL_FLIP_NONE;
 	currentFrame = 0;
 	frameInterval = 1.0f;
 	timer = 0.0f;
@@ -23,17 +22,22 @@ void SpriteRenderer::setAnimationSpeed(const float& _framesPerSecond)
 	frameInterval = 1.0f / _framesPerSecond;
 }
 
-void SpriteRenderer::setFlip(SDL_RendererFlip _flip)
+void SpriteRenderer::setFlip(const SDL_RendererFlip& _flip)
 {
 	flip = _flip;
+}
+
+void SpriteRenderer::setRenderOffset(const SDL_FPoint& _offset)
+{
+	renderOffset = _offset;
 }
 
 void SpriteRenderer::onDraw(SDL_Renderer* _renderer)
 {
 	if (sprite)
 	{
-		renderPosition.x = getEntity()->transform.position.x - float(sprite->width) / 2;
-		renderPosition.y = getEntity()->transform.position.y - float(sprite->height) / 2;
+		renderPosition.x = getEntity()->transform.position.x - float(sprite->width) / 2 + renderOffset.x;
+		renderPosition.y = getEntity()->transform.position.y - float(sprite->height) / 2 + renderOffset.y;
 		renderPosition.w = float(sprite->width);
 		renderPosition.h = float(sprite->height);
 
