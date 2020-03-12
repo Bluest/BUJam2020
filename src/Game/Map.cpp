@@ -14,11 +14,11 @@ void Map::LoadFromFile()
 	{
 		tiles[y].resize(width);
 	}
-
+		
 	for (int y = 0; y < height; ++y)
 	{
 		std::getline(file, line);
-		for (int x = 0; x < width; ++x)
+		for (size_t x = 0; x < line.size(); ++x)
 		{
 			if (line[x] == '#')
 			{

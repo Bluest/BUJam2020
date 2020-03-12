@@ -56,7 +56,7 @@ void Game::Init()
 	enemy->transform.scale.y = 10.0f;
 
 	std::shared_ptr<SpriteRenderer> test = enemy->addComponent<SpriteRenderer>();
-	test->addSprite(sprites->use("player_walk"));
+	test->addSprite(sprites->use("player_walk1"));
 	test->setSprite(0);
 	test->setAnimationSpeed(5.0f);
 
