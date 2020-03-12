@@ -31,9 +31,9 @@ bool PlayerCollision::CheckTilemapCollision()
 	int bottom_tile = playerBottom / m_tileHeight;
 
 	if (left_tile < 0) left_tile = 0;
-	if (right_tile > m_map->width) right_tile = m_map->width;
+	if (right_tile > m_map->width) right_tile = m_map->width - 1;
 	if (top_tile < 0) top_tile = 0;
-	if (bottom_tile > m_map->height) bottom_tile = m_map->height;
+	if (bottom_tile > m_map->height) bottom_tile = m_map->height - 1;
 
 	bool any_collision = false;
 

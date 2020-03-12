@@ -19,8 +19,8 @@ public:
 
 	const int tileSize = 32;
 
-	const int height = 20;
-	const int width = 30;
+	const int height = 10;
+	const int width = 15;
 
 	void LoadFromFile();
 	void setTileset(const std::shared_ptr<Sprite>& _tileset);
