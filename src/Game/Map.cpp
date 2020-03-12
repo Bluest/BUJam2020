@@ -42,7 +42,7 @@ void Map::setTileset(const std::shared_ptr<Sprite>& _tileset)
 
 Tile Map::GetTile(int x, int y)
 {
-	return tiles[x][y];
+	return tiles[y][x];
 }
 
 void Map::onDraw(SDL_Renderer* _renderer)
