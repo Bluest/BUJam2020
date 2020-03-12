@@ -26,7 +26,7 @@ void Game::Init()
 	/* init player */
 	sprites->load("player_idle1", "../sprites/player_idle1.png", 4);
 	sprites->load("player_walk1", "../sprites/player_walk1.png", 8);
-	sprites->load("player_jump1", "../sprites/player_jump1.png", 1);
+	sprites->load("player_jump1", "../sprites/player_jump1.png", 20);
 
 	std::shared_ptr<Entity> player = core->addEntity(0);
 	player->transform.position.x = 125.0f;
