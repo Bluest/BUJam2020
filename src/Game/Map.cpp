@@ -75,14 +75,34 @@ void Map::LoadFromFile()
 				tiles[y][x].type = Tile::blockType::CEILING;
 				tiles[y][x].solid = true;
 			}
+			else if (line[x] == 'j')
+			{
+				tiles[y][x].type = Tile::blockType::CEILING_LEFT_EDGE;
+				tiles[y][x].solid = true;
+			}
 			else if (line[x] == 'J')
 			{
 				tiles[y][x].type = Tile::blockType::CEILING_LEFT_WALL;
 				tiles[y][x].solid = true;
 			}
+			else if (line[x] == 't')
+			{
+				tiles[y][x].type = Tile::blockType::CEILING_RIGHT_EDGE;
+				tiles[y][x].solid = true;
+			}
 			else if (line[x] == 'T')
 			{
 				tiles[y][x].type = Tile::blockType::CEILING_RIGHT_WALL;
+				tiles[y][x].solid = true;
+			}
+			else if (line[x] == '=')
+			{
+				tiles[y][x].type = Tile::blockType::FLOOR_CEILING;
+				tiles[y][x].solid = true;
+			}
+			else if (line[x] == 'I')
+			{
+				tiles[y][x].type = Tile::blockType::WALL_BOTH;
 				tiles[y][x].solid = true;
 			}
 		}
@@ -119,63 +139,63 @@ void Map::onDraw(SDL_Renderer* _renderer)
 			}
 			case Tile::blockType::BLOCK:
 			{
-				frame.x = 0;
-				frame.y = 0;
+				frame.x = 2 * tileSize;
+				frame.y = 1 * tileSize;
 				SDL_RenderCopy(_renderer, tileset->texture, &frame, &renderPosition);
 				break;
 			}
 			case Tile::blockType::PLATFORM:
 			{
-				frame.x = 2 * tileSize;
-				frame.y = 1 * tileSize;
+				frame.x = 0;
+				frame.y = 3 * tileSize;
 				SDL_RenderCopy(_renderer, tileset->texture, &frame, &renderPosition);
 				break;
 			}
 			case Tile::blockType::FLOOR:
 			{
 				frame.x = 2 * tileSize;
-				frame.y = 2 * tileSize;
+				frame.y = 0;
 				SDL_RenderCopy(_renderer, tileset->texture, &frame, &renderPosition);
 				break;
 			}
 			case Tile::blockType::FLOOR_LEFT_EDGE:
 			{
-				frame.x = 2 * tileSize;
-				frame.y = 2 * tileSize;
+				frame.x = 1 * tileSize;
+				frame.y = 0;
 				SDL_RenderCopy(_renderer, tileset->texture, &frame, &renderPosition);
 				break;
 			}
 			case Tile::blockType::FLOOR_LEFT_WALL:
 			{
-				frame.x = 1 * tileSize;
-				frame.y = 2 * tileSize;
+				frame.x = 4 * tileSize;
+				frame.y = 1 * tileSize;
 				SDL_RenderCopy(_renderer, tileset->texture, &frame, &renderPosition);
 				break;
 			}
 			case Tile::blockType::FLOOR_RIGHT_EDGE:
 			{
-				frame.x = 2 * tileSize;
-				frame.y = 2 * tileSize;
+				frame.x = 3 * tileSize;
+				frame.y = 0;
 				SDL_RenderCopy(_renderer, tileset->texture, &frame, &renderPosition);
 				break;
 			}
 			case Tile::blockType::FLOOR_RIGHT_WALL:
 			{
-				frame.x = 3 * tileSize;
-				frame.y = 2 * tileSize;
+				frame.x = 5 * tileSize;
+				frame.y = 1 * tileSize;
 				SDL_RenderCopy(_renderer, tileset->texture, &frame, &renderPosition);
 				break;
 			}
 			case Tile::blockType::WALL_LEFT:
 			{
-				frame.x = 1 * tileSize;
+				frame.x = 3 * tileSize;
 				frame.y = 1 * tileSize;
 				SDL_RenderCopy(_renderer, tileset->texture, &frame, &renderPosition);
 				break;
 			}
 			case Tile::blockType::WALL_RIGHT:
 			{
-				frame.x = 3 * tileSize;
+				frame.x = 1 * tileSize;
 				frame.y = 1 * tileSize;
 				SDL_RenderCopy(_renderer, tileset->texture, &frame, &renderPosition);
 				break;
@@ -183,21 +203,49 @@ void Map::onDraw(SDL_Renderer* _renderer)
 			case Tile::blockType::CEILING:
 			{
 				frame.x = 2 * tileSize;
-				frame.y = 0;
+				frame.y = 2 * tileSize;
+				SDL_RenderCopy(_renderer, tileset->texture, &frame, &renderPosition);
+				break;
+			}
+			case Tile::blockType::CEILING_LEFT_EDGE:
+			{
+				frame.x = 3 * tileSize;
+				frame.y = 2 * tileSize;
 				SDL_RenderCopy(_renderer, tileset->texture, &frame, &renderPosition);
 				break;
 			}
 			case Tile::blockType::CEILING_LEFT_WALL :
 			{
-				frame.x = 1 * tileSize;
+				frame.x = 4 * tileSize;
 				frame.y = 0;
+				SDL_RenderCopy(_renderer, tileset->texture, &frame, &renderPosition);
+				break;
+			}
+			case Tile::blockType::CEILING_RIGHT_EDGE:
+			{
+				frame.x = 1 * tileSize;
+				frame.y = 2 * tileSize;
 				SDL_RenderCopy(_renderer, tileset->texture, &frame, &renderPosition);
 				break;
 			}
 			case Tile::blockType::CEILING_RIGHT_WALL:
 			{
-				frame.x = 3 * tileSize;
+				frame.x = 5 * tileSize;
 				frame.y = 0;
+				SDL_RenderCopy(_renderer, tileset->texture, &frame, &renderPosition);
+				break;
+			}
+			case Tile::blockType::FLOOR_CEILING:
+			{
+				frame.x = 2 * tileSize;
+				frame.y = 3 * tileSize;
+				SDL_RenderCopy(_renderer, tileset->texture, &frame, &renderPosition);
+				break;
+			}
+			case Tile::blockType::WALL_BOTH:
+			{
+				frame.x = 0;
+				frame.y = 1 * tileSize;
 				SDL_RenderCopy(_renderer, tileset->texture, &frame, &renderPosition);
 				break;
 			}
