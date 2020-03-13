@@ -1,3 +1,4 @@
+#include "BackgroundRenderer.h"
 #include "Game.h"
 #include "Map.h"
 #include "Patrol.h"
@@ -23,11 +24,8 @@ void Game::Init()
 
 	// Background
 	std::shared_ptr<Entity> background = core->addEntity(0);
-	background->transform.position = { 240.0f, 160.0f };
-
-	std::shared_ptr<SpriteRenderer> bgRenderer = background->addComponent<SpriteRenderer>();
-	bgRenderer->addSprite(sprites->use("background"));
-	bgRenderer->setSprite(0);
+	std::shared_ptr<BackgroundRenderer> bgRenderer = background->addComponent<BackgroundRenderer>();
+	bgRenderer->setImage(sprites->use("background"));
 
 	// Player
 	std::shared_ptr<Entity> player = core->addEntity(2);
@@ -82,7 +80,7 @@ void Game::loadSprites()
 	sprites->load("player_walk2", "../sprites/player_walk2.png", 10);
 	sprites->load("player_jump2", "../sprites/player_jump2.png", 20);
 	sprites->load("tileset", "../sprites/tileset.png", 1);
-	sprites->load("background", "../sprites/background.png", 1);
+	sprites->load("background", "../sprites/background_cropped.png", 1);
 	sprites->load("collectable_blob", "../sprites/collectable_blob.png", 8);
 	sprites->load("enemy1", "../sprites/Kurbeh.png", 10);
 }

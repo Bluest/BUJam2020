@@ -34,17 +34,19 @@ add_library(Engine
 target_link_libraries(Engine SDL2 SDL2main SDL2_image)
 
 add_executable(Game
-	src/Game/main.cpp
-	src/Game/PlayerMovement.cpp
-	src/Game/PlayerMovement.h
+	src/Game/BackgroundRenderer.cpp
+	src/Game/BackgroundRenderer.h
 	src/Game/Game.cpp
 	src/Game/Game.h
+	src/Game/main.cpp
 	src/Game/Map.cpp
 	src/Game/Map.h
 	src/Game/Patrol.cpp
 	src/Game/Patrol.h
 	src/Game/PlayerCollision.cpp
 	src/Game/PlayerCollision.h
+	src/Game/PlayerMovement.cpp
+	src/Game/PlayerMovement.h
 	src/Game/PlayerState.cpp
 	src/Game/PlayerState.h
 )
