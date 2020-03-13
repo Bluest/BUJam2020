@@ -55,6 +55,11 @@ void Core::run()
 	}
 }
 
+std::shared_ptr<Camera> Core::getCamera()
+{
+	return camera;
+}
+
 float Core::getDeltaTime()
 {
 	return time->getDelta();

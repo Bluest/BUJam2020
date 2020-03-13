@@ -1,3 +1,4 @@
+#include "Camera.h"
 #include "Core.h"
 #include "Entity.h"
 #include "Sprite.h"
@@ -40,6 +41,9 @@ void SpriteRenderer::onDraw(SDL_Renderer* _renderer)
 		renderPosition.y = getEntity()->transform.position.y - float(sprite->height) / 2 + renderOffset.y;
 		renderPosition.w = float(sprite->width);
 		renderPosition.h = float(sprite->height);
+
+		renderPosition.x -= getCore()->getCamera()->getView().x;
+		renderPosition.y -= getCore()->getCamera()->getView().y;
 
 		renderCentre.x = getEntity()->transform.scale.x / 2;
 		renderCentre.y = getEntity()->transform.scale.y / 2;

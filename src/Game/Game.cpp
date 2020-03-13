@@ -32,7 +32,7 @@ void Game::Init()
 	// Player
 	std::shared_ptr<Entity> player = core->addEntity(2);
 	player->transform.position.x = 70.0f;
-	player->transform.position.y = 90.0f;
+	player->transform.position.y = 1100.0f;
 	player->transform.scale.x = 10.0f;
 	player->transform.scale.y = 10.0f;
 
@@ -56,21 +56,21 @@ void Game::Init()
 	playerMovement->setCollider(playerCollision);
 
 	// Enemy
-	std::shared_ptr<Entity> enemy = core->addEntity(2);
-	enemy->transform.position.x = 250.0f;
-	enemy->transform.position.y = 50.0f;
-	enemy->transform.scale.x = 10.0f;
-	enemy->transform.scale.y = 10.0f;
-	
-	std::shared_ptr<SpriteRenderer> test = enemy->addComponent<SpriteRenderer>();
-	test->addSprite(sprites->use("enemy1"));
-	test->setSprite(0);
-	test->setAnimationSpeed(5.0f);
-	
-	std::shared_ptr<Patrol> patrol = enemy->addComponent<Patrol>();
-	patrol->setRenderer(test);
-	patrol->setMovementSpeed(20.0f);
-	patrol->setEnd(300.0f);
+	//std::shared_ptr<Entity> enemy = core->addEntity(2);
+	//enemy->transform.position.x = 250.0f;
+	//enemy->transform.position.y = 50.0f;
+	//enemy->transform.scale.x = 10.0f;
+	//enemy->transform.scale.y = 10.0f;
+	//
+	//std::shared_ptr<SpriteRenderer> test = enemy->addComponent<SpriteRenderer>();
+	//test->addSprite(sprites->use("enemy1"));
+	//test->setSprite(0);
+	//test->setAnimationSpeed(5.0f);
+	//
+	//std::shared_ptr<Patrol> patrol = enemy->addComponent<Patrol>();
+	//patrol->setRenderer(test);
+	//patrol->setMovementSpeed(20.0f);
+	//patrol->setEnd(300.0f);
 }
 
 void Game::loadSprites()

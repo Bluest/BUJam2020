@@ -1,5 +1,3 @@
-#include "SDL_rect.h"
-
 #include "Camera.h"
 
 void Camera::move(const SDL_FPoint& _direction)
@@ -23,25 +21,30 @@ void Camera::setPosition(const SDL_FPoint& _position)
 {
 	position = _position;
 
-	if (position.x - width / 2 < 0.0f)
+	if ((position.x - width / 2) < 0.0f)
 	{
 		position.x = width / 2;
 	}
-
-	if (position.x + width / 2 > mapWidth)
+	
+	if ((position.x + width / 2) > mapWidth)
 	{
 		position.x = mapWidth - width / 2;
 	}
-
-	if (position.y - height / 2 < 0.0f)
+	
+	if ((position.y - height / 2) < 0.0f)
 	{
 		position.y = height / 2;
 	}
-
-	if (position.y + height / 2 > mapHeight)
+	
+	if ((position.y + height / 2) > mapHeight)
 	{
-		position.y = height / 2;
+		position.y = mapHeight - height / 2;
 	}
+}
+
+SDL_FRect Camera::getView()
+{
+	return { position.x - width / 2, position.y - height / 2, width, height };
 }
 
 void Camera::updateTilesOnScreen(const SDL_Point& _direction)

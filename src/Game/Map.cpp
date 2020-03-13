@@ -126,10 +126,12 @@ void Map::onDraw(SDL_Renderer* _renderer)
 	for (size_t y = 0; y < tiles.size(); ++y)
 	{
 		renderPosition.y = y * tileSize;
+		renderPosition.y -= int(getCore()->getCamera()->getView().y);
 
 		for (size_t x = 0; x < tiles[y].size(); ++x)
 		{
 			renderPosition.x = x * tileSize;
+			renderPosition.x -= int(getCore()->getCamera()->getView().x);
 
 			switch (tiles[y][x].type)
 			{

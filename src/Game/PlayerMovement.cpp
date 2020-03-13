@@ -25,28 +25,28 @@ void PlayerMovement::onUpdate()
 	if (input->keyPress(SDLK_a))
 	{
 		// Walk left
-		playerState->velocity.x -= 50.0f;
+		playerState->velocity.x -= playerState->moveSpeed;
 		playerState->updateSprite();
 	}
 
 	if (input->keyRelease(SDLK_a))
 	{
 		// Stop walking left
-		playerState->velocity.x += 50.0f;
+		playerState->velocity.x += playerState->moveSpeed;
 		playerState->updateSprite();
 	}
 
 	if (input->keyPress(SDLK_d))
 	{
 		// Walk right
-		playerState->velocity.x += 50.0f;
+		playerState->velocity.x += playerState->moveSpeed;
 		playerState->updateSprite();
 	}
 
 	if (input->keyRelease(SDLK_d))
 	{
 		// Stop walking right
-		playerState->velocity.x -= 50.0f;
+		playerState->velocity.x -= playerState->moveSpeed;
 		playerState->updateSprite();
 	}
 
@@ -58,19 +58,21 @@ void PlayerMovement::onUpdate()
 	// Gravity
 	if (playerState->airborne)
 	{
-		playerState->velocity.y += 200.0f * getCore()->getDeltaTime();
+		playerState->velocity.y += playerState->gravity * getCore()->getDeltaTime();
 	}
 
 	// Update position
 	getEntity()->transform.position.x += playerState->velocity.x * getCore()->getDeltaTime();
 	getEntity()->transform.position.y += playerState->velocity.y * getCore()->getDeltaTime();
+
+	getCore()->getCamera()->setPosition(getEntity()->transform.position);
 }
 
 void PlayerMovement::jump()
 {
 	if (!playerState->airborne)
 	{
-		playerState->velocity.y = -120.0f;
+		playerState->velocity.y = playerState->jumpHeight;
 		playerState->airborne = true;
 		playerState->updateSprite();
 	}

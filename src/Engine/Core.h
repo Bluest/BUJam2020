@@ -18,6 +18,7 @@ public:
 	std::shared_ptr<Entity> addEntity(const unsigned int& _layer);
 	void run();
 
+	std::shared_ptr<Camera> getCamera();
 	float getDeltaTime();
 	std::shared_ptr<Input> getInput();
 	SDL_Renderer* getRenderer();

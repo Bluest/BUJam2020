@@ -8,6 +8,9 @@ public:
 
 	std::shared_ptr<SpriteRenderer> renderer;
 
+	float moveSpeed;
+	float jumpHeight;
+	float gravity;
 	SDL_FPoint velocity;
 	bool airborne;
 	// dead

@@ -45,6 +45,9 @@ void PlayerState::setRenderer(const std::shared_ptr<SpriteRenderer>& _renderer)
 
 void PlayerState::onStart()
 {
+	moveSpeed = 50.0f;
+	jumpHeight = -120.0f;
+	gravity = 200.0f;
 	velocity = { 0.0f, 0.0f };
 	airborne = true;
 }
