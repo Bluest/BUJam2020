@@ -19,6 +19,31 @@ void Camera::move(const SDL_FPoint& _direction)
 	previousPosition = position;
 }
 
+void Camera::setPosition(const SDL_FPoint& _position)
+{
+	position = _position;
+
+	if (position.x - width / 2 < 0.0f)
+	{
+		position.x = width / 2;
+	}
+
+	if (position.x + width / 2 > mapWidth)
+	{
+		position.x = mapWidth - width / 2;
+	}
+
+	if (position.y - height / 2 < 0.0f)
+	{
+		position.y = height / 2;
+	}
+
+	if (position.y + height / 2 > mapHeight)
+	{
+		position.y = height / 2;
+	}
+}
+
 void Camera::updateTilesOnScreen(const SDL_Point& _direction)
 {
 	if (_direction.x == -1)

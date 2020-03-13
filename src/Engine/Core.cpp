@@ -1,3 +1,4 @@
+#include "Camera.h"
 #include "Core.h"
 #include "Entity.h"
 #include "Input.h"
@@ -12,6 +13,7 @@ std::shared_ptr<Core> Core::init(const int& _winW, const int& _winH, const int& 
 	SDL_RenderSetLogicalSize(core->renderer, _winW / _scale, _winH / _scale);
 
 	core->self = core;
+	core->camera = std::make_shared<Camera>();
 	core->input = std::make_shared<Input>();
 	core->time = std::make_unique<Time>(_fpsCap);
 

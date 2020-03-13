@@ -4,6 +4,7 @@
 
 #include "SDL.h"
 
+class Camera;
 class Entity;
 class Input;
 class Time;
@@ -30,6 +31,7 @@ private:
 	SDL_Renderer* renderer;
 
 	std::weak_ptr<Core> self;
+	std::shared_ptr<Camera> camera;
 	std::shared_ptr<Input> input;
 	std::unique_ptr<Time> time;
 

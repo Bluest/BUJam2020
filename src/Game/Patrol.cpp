@@ -32,9 +32,7 @@ void Patrol::Move()
 	if (movingRight)
 	{
 		getEntity()->transform.position.x += movementSpeed * getCore()->getDeltaTime();
-		renderer->setSprite(1);
-		renderer->setAnimationSpeed(10.0f);
-		renderer->setFlip(SDL_FLIP_HORIZONTAL);
+		renderer->setFlip(SDL_FLIP_NONE);
 		if (getEntity()->transform.position.x > waypoint)
 		{
 			movingRight = false;
@@ -43,9 +41,7 @@ void Patrol::Move()
 	else
 	{
 		getEntity()->transform.position.x -= movementSpeed * getCore()->getDeltaTime();
-		renderer->setSprite(1);
-		renderer->setAnimationSpeed(10.0f);
-		renderer->setFlip(SDL_FLIP_NONE);
+		renderer->setFlip(SDL_FLIP_HORIZONTAL);
 		if (getEntity()->transform.position.x < startX)
 		{
 			movingRight = true;
