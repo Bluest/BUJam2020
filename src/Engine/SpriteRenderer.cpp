@@ -45,8 +45,8 @@ void SpriteRenderer::onDraw(SDL_Renderer* _renderer)
 		renderPosition.x -= getCore()->getCamera()->getView().x;
 		renderPosition.y -= getCore()->getCamera()->getView().y;
 
-		renderCentre.x = getEntity()->transform.scale.x / 2;
-		renderCentre.y = getEntity()->transform.scale.y / 2;
+		renderCentre.x = float(sprite->width) / 2;
+		renderCentre.y = float(sprite->height) / 2;
 
 		if (sprite->frames > 1)
 		{

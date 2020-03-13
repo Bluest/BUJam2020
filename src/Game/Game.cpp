@@ -1,4 +1,6 @@
 #include "BackgroundRenderer.h"
+#include "BlobCollector.h"
+#include "BlobParticle.h"
 #include "Game.h"
 #include "Map.h"
 #include "Patrol.h"
@@ -27,12 +29,32 @@ void Game::Init()
 	std::shared_ptr<BackgroundRenderer> bgRenderer = background->addComponent<BackgroundRenderer>();
 	bgRenderer->setImage(sprites->use("background"));
 
+	// Blobs
+	std::vector<SDL_FPoint> blobPositions;
+	blobPositions.push_back({ 90.0f, 1070.0f });
+	blobPositions.push_back({ 100.0f, 1070.0f });
+	blobPositions.push_back({ 110.0f, 1070.0f });
+	blobPositions.push_back({ 120.0f, 1070.0f });
+	blobPositions.push_back({ 130.0f, 1070.0f });
+
+	std::list<std::shared_ptr<Entity>> blobs;
+	for (size_t i = 0; i < blobPositions.size(); ++i)
+	{
+		std::shared_ptr<Entity> blob = core->addEntity(3);
+		blob->transform.position = blobPositions[i];
+		std::shared_ptr<SpriteRenderer> blobSprite = blob->addComponent<SpriteRenderer>();
+		blobSprite->addSprite(sprites->use("collectable_blob"));
+		blobSprite->setSprite(0);
+		blobSprite->setAnimationSpeed(5.0f);
+		blob->addComponent<BlobParticle>();
+
+		blobs.push_back(blob);
+	}
+
 	// Player
 	std::shared_ptr<Entity> player = core->addEntity(2);
 	player->transform.position.x = 70.0f;
 	player->transform.position.y = 1100.0f;
-	player->transform.scale.x = 10.0f;
-	player->transform.scale.y = 10.0f;
 
 	std::shared_ptr<SpriteRenderer> spriteRenderer = player->addComponent<SpriteRenderer>();
 	spriteRenderer->addSprite(sprites->use("player_idle1"));
@@ -52,6 +74,9 @@ void Game::Init()
 	playerCollision->setMap(map);
 	playerCollision->setPlayerState(playerState);
 	playerMovement->setCollider(playerCollision);
+
+	std::shared_ptr<BlobCollector> collector = player->addComponent<BlobCollector>();
+	collector->setPlayer(playerState);
 
 	// Enemy
 	//std::shared_ptr<Entity> enemy = core->addEntity(2);

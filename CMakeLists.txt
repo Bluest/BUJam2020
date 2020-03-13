@@ -36,6 +36,10 @@ target_link_libraries(Engine SDL2 SDL2main SDL2_image)
 add_executable(Game
 	src/Game/BackgroundRenderer.cpp
 	src/Game/BackgroundRenderer.h
+	src/Game/BlobCollector.cpp
+	src/Game/BlobCollector.h
+	src/Game/BlobParticle.cpp
+	src/Game/BlobParticle.h
 	src/Game/Game.cpp
 	src/Game/Game.h
 	src/Game/main.cpp
