@@ -32,28 +32,30 @@ void Game::Init()
 
 	// Blobs
 	std::vector<SDL_Point> blobCoordinates;
-	blobCoordinates.push_back({ 3, 34 });
-	blobCoordinates.push_back({ 4, 34 });
-	blobCoordinates.push_back({ 5, 33 });
-	blobCoordinates.push_back({ 6, 33 });
-	blobCoordinates.push_back({ 8, 34 });
-	blobCoordinates.push_back({ 9, 34 });
-	blobCoordinates.push_back({ 2, 37 });
-	blobCoordinates.push_back({ 3, 37 });
-	blobCoordinates.push_back({ 1, 38 });
-	blobCoordinates.push_back({ 2, 38 });
-	blobCoordinates.push_back({ 3, 38 });
-	blobCoordinates.push_back({ 4, 38 });
-	blobCoordinates.push_back({ 8, 39 });
-	blobCoordinates.push_back({ 11, 39 });
-	blobCoordinates.push_back({ 11, 38 });
-	blobCoordinates.push_back({ 11, 37 });
-	blobCoordinates.push_back({ 11, 36 });
-	blobCoordinates.push_back({ 15, 39 });
-	blobCoordinates.push_back({ 21, 39 });
-	blobCoordinates.push_back({ 22, 39 });
-	blobCoordinates.push_back({ 23, 39 });
-	blobCoordinates.push_back({ 24, 39 });
+	{
+		blobCoordinates.push_back({ 3, 34 });
+		blobCoordinates.push_back({ 4, 34 });
+		blobCoordinates.push_back({ 5, 33 });
+		blobCoordinates.push_back({ 6, 33 });
+		blobCoordinates.push_back({ 8, 34 });
+		blobCoordinates.push_back({ 9, 34 });
+		blobCoordinates.push_back({ 2, 37 });
+		blobCoordinates.push_back({ 3, 37 });
+		blobCoordinates.push_back({ 1, 38 });
+		blobCoordinates.push_back({ 2, 38 });
+		blobCoordinates.push_back({ 3, 38 });
+		blobCoordinates.push_back({ 4, 38 });
+		blobCoordinates.push_back({ 8, 39 });
+		blobCoordinates.push_back({ 11, 39 });
+		blobCoordinates.push_back({ 11, 38 });
+		blobCoordinates.push_back({ 11, 37 });
+		blobCoordinates.push_back({ 11, 36 });
+		blobCoordinates.push_back({ 15, 39 });
+		blobCoordinates.push_back({ 21, 39 });
+		blobCoordinates.push_back({ 22, 39 });
+		blobCoordinates.push_back({ 23, 39 });
+		blobCoordinates.push_back({ 24, 39 });
+	}
 	
 	std::list<std::shared_ptr<Entity>> blobs;
 	for (size_t i = 0; i < blobCoordinates.size(); ++i)
@@ -84,12 +86,18 @@ void Game::Init()
 	player->transform.position.y = 1100.0f;
 
 	std::shared_ptr<SpriteRenderer> spriteRenderer = player->addComponent<SpriteRenderer>();
-	spriteRenderer->addSprite(sprites->use("player_idle1"));
-	spriteRenderer->addSprite(sprites->use("player_walk1"));
-	spriteRenderer->addSprite(sprites->use("player_jump1"));
-	spriteRenderer->addSprite(sprites->use("player_idle2"));
-	spriteRenderer->addSprite(sprites->use("player_walk2"));
-	spriteRenderer->addSprite(sprites->use("player_jump2"));
+	{
+		spriteRenderer->addSprite(sprites->use("player_idle1"));
+		spriteRenderer->addSprite(sprites->use("player_walk1"));
+		spriteRenderer->addSprite(sprites->use("player_jump1"));
+		spriteRenderer->addSprite(sprites->use("player_idle2"));
+		spriteRenderer->addSprite(sprites->use("player_walk2"));
+		spriteRenderer->addSprite(sprites->use("player_jump2"));
+		spriteRenderer->addSprite(sprites->use("player_idle3"));
+		spriteRenderer->addSprite(sprites->use("player_walk3"));
+		spriteRenderer->addSprite(sprites->use("player_jump3"));
+		spriteRenderer->addSprite(sprites->use("player_punch3"));
+	}
 
 	std::shared_ptr<PlayerMovement> playerMovement = player->addComponent<PlayerMovement>();
 
@@ -133,6 +141,10 @@ void Game::loadSprites()
 	sprites->load("player_idle2", "../sprites/player_idle2.png", 2);
 	sprites->load("player_walk2", "../sprites/player_walk2.png", 10);
 	sprites->load("player_jump2", "../sprites/player_jump2.png", 20);
+	sprites->load("player_idle3", "../sprites/player_idle3.png", 2);
+	sprites->load("player_walk3", "../sprites/player_walk3.png", 10);
+	sprites->load("player_jump3", "../sprites/player_jump3.png", 20);
+	sprites->load("player_punch3", "../sprites/player_punch3.png", 10);
 	sprites->load("tileset", "../sprites/tileset.png", 1);
 	sprites->load("background", "../sprites/background_cropped.png", 1);
 	sprites->load("blob_ui", "../sprites/growth_bar.png", 1);

@@ -35,6 +35,26 @@ void Map::LoadFromFile()
 				tiles[y][x].type = Tile::blockType::PLATFORM;
 				tiles[y][x].solid = true;
 			}
+			else if (line[x] == '[')
+			{
+				tiles[y][x].type = Tile::blockType::PLATFORM_LEFT;
+				tiles[y][x].solid = true;
+			}
+			else if (line[x] == ']')
+			{
+				tiles[y][x].type = Tile::blockType::PLATFORM_RIGHT;
+				tiles[y][x].solid = true;
+			}
+			else if (line[x] == '_')
+			{
+				tiles[y][x].type = Tile::blockType::PLATFORM_TOP;
+				tiles[y][x].solid = true;
+			}
+			else if (line[x] == 'u')
+			{
+				tiles[y][x].type = Tile::blockType::PLATFORM_BOTTOM;
+				tiles[y][x].solid = true;
+			}
 			else if (line[x] == 'f')
 			{
 				tiles[y][x].type = Tile::blockType::FLOOR;
@@ -105,6 +125,16 @@ void Map::LoadFromFile()
 				tiles[y][x].type = Tile::blockType::WALL_BOTH;
 				tiles[y][x].solid = true;
 			}
+			else if (line[x] == 'x')
+			{
+			tiles[y][x].type = Tile::blockType::LAVA;
+			tiles[y][x].solid = false;
+			}
+			else if (line[x] == '~')
+			{
+			tiles[y][x].type = Tile::blockType::LAVA_SURFACE;
+			tiles[y][x].solid = false;
+			}
 		}
 	}
 }
@@ -150,6 +180,34 @@ void Map::onDraw(SDL_Renderer* _renderer)
 			{
 				frame.x = 0;
 				frame.y = 3 * tileSize;
+				SDL_RenderCopy(_renderer, tileset->texture, &frame, &renderPosition);
+				break;
+			}
+			case Tile::blockType::PLATFORM_LEFT:
+			{
+				frame.x = 1 * tileSize;
+				frame.y = 3 * tileSize;
+				SDL_RenderCopy(_renderer, tileset->texture, &frame, &renderPosition);
+				break;
+			}
+			case Tile::blockType::PLATFORM_RIGHT:
+			{
+				frame.x = 3 * tileSize;
+				frame.y = 3 * tileSize;
+				SDL_RenderCopy(_renderer, tileset->texture, &frame, &renderPosition);
+				break;
+			}
+			case Tile::blockType::PLATFORM_TOP:
+			{
+				frame.x = 0;
+				frame.y = 0;
+				SDL_RenderCopy(_renderer, tileset->texture, &frame, &renderPosition);
+				break;
+			}
+			case Tile::blockType::PLATFORM_BOTTOM:
+			{
+				frame.x = 0;
+				frame.y = 2 * tileSize;
 				SDL_RenderCopy(_renderer, tileset->texture, &frame, &renderPosition);
 				break;
 			}
@@ -247,6 +305,20 @@ void Map::onDraw(SDL_Renderer* _renderer)
 			case Tile::blockType::WALL_BOTH:
 			{
 				frame.x = 0;
+				frame.y = 1 * tileSize;
+				SDL_RenderCopy(_renderer, tileset->texture, &frame, &renderPosition);
+				break;
+			}
+			case Tile::blockType::LAVA:
+			{
+				frame.x = 4 * tileSize;
+				frame.y = 2 * tileSize;
+				SDL_RenderCopy(_renderer, tileset->texture, &frame, &renderPosition);
+				break;
+			}
+			case Tile::blockType::LAVA_SURFACE:
+			{
+				frame.x = 4 * tileSize;
 				frame.y = 1 * tileSize;
 				SDL_RenderCopy(_renderer, tileset->texture, &frame, &renderPosition);
 				break;

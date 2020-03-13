@@ -31,6 +31,12 @@ void PlayerState::updateSprite()
 			renderer->setAnimationSpeed(10.0f);
 			break;
 		}
+		case 3:
+		{
+			renderer->setSprite(8);
+			renderer->setAnimationSpeed(10.0f);
+			break;
+		}
 		}
 	}
 	else
@@ -50,6 +56,13 @@ void PlayerState::updateSprite()
 			{
 				renderer->setSprite(3);
 				renderer->setAnimationSpeed(2.0f);
+				break;
+			}
+			case 3:
+			{
+				renderer->setSprite(6);
+				renderer->setAnimationSpeed(2.0f);
+				break;
 			}
 			}
 		}
@@ -68,6 +81,13 @@ void PlayerState::updateSprite()
 			{
 				renderer->setSprite(4);
 				renderer->setAnimationSpeed(10.0f);
+				break;
+			}
+			case 3:
+			{
+				renderer->setSprite(7);
+				renderer->setAnimationSpeed(10.0f);
+				break;
 			}
 			}
 		}
@@ -84,6 +104,13 @@ void PlayerState::levelUp(const int& _level)
 		size = { 20.0f, 20.0f };
 		moveSpeed = 80.0f;
 		jumpHeight = -200.0f;
+		break;
+	}
+	case 3:
+	{
+		level = 3;
+		size = { 36.0f, 20.0f };
+		break;
 	}
 	}
 
