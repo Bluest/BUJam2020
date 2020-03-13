@@ -26,7 +26,8 @@ struct Tile
 		FLOOR_CEILING,
 		WALL_BOTH,
 		LAVA,
-		LAVA_SURFACE
+		LAVA_SURFACE,
+		BREAKABLE
 	};
 
 	blockType type;
@@ -45,6 +46,7 @@ public:
 	void setTileset(const std::shared_ptr<Sprite>& _tileset);
 
 	Tile GetTile(int x, int y);
+	void clearTile(const int& _x, const int& _y);
 
 private:
 	void onDraw(SDL_Renderer* _renderer);

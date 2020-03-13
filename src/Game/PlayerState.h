@@ -3,6 +3,12 @@
 class PlayerState : public Component
 {
 public:
+	enum Facing
+	{
+		LEFT,
+		RIGHT
+	};
+
 	void updateSprite();
 	void levelUp(const int& _level);
 	//void die();
@@ -16,6 +22,7 @@ public:
 	float jumpHeight;
 	float gravity;
 	SDL_FPoint velocity;
+	Facing facing;
 	bool airborne;
 
 	// Abilities

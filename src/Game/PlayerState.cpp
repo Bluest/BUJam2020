@@ -6,11 +6,13 @@ void PlayerState::updateSprite()
 	if (velocity.x > 0.0f)
 	{
 		// Facing right
+		facing = RIGHT;
 		renderer->setFlip(SDL_FLIP_NONE);
 	}
 	else if (velocity.x < 0.0f)
 	{
 		// Facing left
+		facing = LEFT;
 		renderer->setFlip(SDL_FLIP_HORIZONTAL);
 	}
 
@@ -178,6 +180,7 @@ void PlayerState::onStart()
 	jumpHeight = -120.0f;
 	gravity = 200.0f;
 	velocity = { 0.0f, 0.0f };
+	facing = RIGHT;
 	airborne = true;
 	punchEnabled = false;
 	punching = false;

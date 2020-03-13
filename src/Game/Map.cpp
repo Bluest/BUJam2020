@@ -135,6 +135,11 @@ void Map::LoadFromFile()
 			tiles[y][x].type = Tile::blockType::LAVA_SURFACE;
 			tiles[y][x].solid = false;
 			}
+			else if (line[x] == '+')
+			{
+			tiles[y][x].type = Tile::blockType::BREAKABLE;
+			tiles[y][x].solid = true;
+			}
 		}
 	}
 }
@@ -149,6 +154,12 @@ void Map::setTileset(const std::shared_ptr<Sprite>& _tileset)
 Tile Map::GetTile(int x, int y)
 {
 	return tiles[y][x];
+}
+
+void Map::clearTile(const int& _x, const int& _y)
+{
+	tiles[_y][_x].type = Tile::blockType::EMPTY;
+	tiles[_y][_x].solid = false;
 }
 
 void Map::onDraw(SDL_Renderer* _renderer)
@@ -319,6 +330,13 @@ void Map::onDraw(SDL_Renderer* _renderer)
 			case Tile::blockType::LAVA_SURFACE:
 			{
 				frame.x = 4 * tileSize;
+				frame.y = 2 * tileSize;
+				SDL_RenderCopy(_renderer, tileset->texture, &frame, &renderPosition);
+				break;
+			}
+			case Tile::blockType::BREAKABLE:
+			{
+				frame.x = 5 * tileSize;
 				frame.y = 2 * tileSize;
 				SDL_RenderCopy(_renderer, tileset->texture, &frame, &renderPosition);
 				break;
