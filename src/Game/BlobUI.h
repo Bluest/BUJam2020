@@ -16,5 +16,6 @@ private:
 	std::shared_ptr<Sprite> sprite;
 	SDL_Rect renderPosition;
 	SDL_FRect bar;
+	SDL_FRect barShadow;
 	float barLength;
 };
