@@ -124,7 +124,7 @@ void Game::Init()
 		blobs.push_back(blob);
 	}
 
-	// Blob UI
+	// UI
 	std::shared_ptr<Entity> ui = core->addEntity(5);
 	std::shared_ptr<BlobUI> blobBar = ui->addComponent<BlobUI>();
 	blobBar->setSprite(sprites->use("blob_ui"));
@@ -153,15 +153,17 @@ void Game::Init()
 	}
 
 	std::shared_ptr<PlayerMovement> playerMovement = player->addComponent<PlayerMovement>();
+	std::shared_ptr<PlayerPunch> playerPunch = player->addComponent<PlayerPunch>();
+	playerPunch->setMap(map);
 
 	std::shared_ptr<PlayerState> playerState = player->addComponent<PlayerState>();
 	playerState->setRenderer(spriteRenderer);
 	playerMovement->setPlayerState(playerState);
+	playerPunch->setPlayerState(playerState);
 
 	std::shared_ptr<PlayerCollision> playerCollision = player->addComponent<PlayerCollision>();
 	playerCollision->setMap(map);
 	playerCollision->setPlayerState(playerState);
-	playerMovement->setCollider(playerCollision);
 
 	std::shared_ptr<BlobCollector> collector = player->addComponent<BlobCollector>();
 	collector->setPlayer(playerState);
@@ -240,11 +242,11 @@ void Game::loadSprites()
 	sprites->load("player_idle3", "../sprites/player_idle3.png", 2);
 	sprites->load("player_walk3", "../sprites/player_walk3.png", 10);
 	sprites->load("player_jump3", "../sprites/player_jump3.png", 20);
-	sprites->load("player_punch3", "../sprites/player_punch3.png", 10);
+	sprites->load("player_punch3", "../sprites/player_punch3.png", 20);
 	sprites->load("player_idle4", "../sprites/player_idle4.png", 2);
 	sprites->load("player_walk4", "../sprites/player_walk4.png", 10);
 	sprites->load("player_jump4", "../sprites/player_jump4.png", 20);
-	sprites->load("player_punch4", "../sprites/player_punch4.png", 10);
+	sprites->load("player_punch4", "../sprites/player_punch4.png", 20);
 	sprites->load("tileset", "../sprites/tileset.png", 1);
 	sprites->load("background", "../sprites/background_cropped.png", 1);
 	sprites->load("blob_ui", "../sprites/growth_bar.png", 1);

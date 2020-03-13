@@ -14,7 +14,25 @@ void PlayerState::updateSprite()
 		renderer->setFlip(SDL_FLIP_HORIZONTAL);
 	}
 
-	if (airborne)
+	if (punching)
+	{
+		switch (level)
+		{
+		case 3:
+		{
+			renderer->setSprite(9);
+			renderer->setAnimationSpeed(10.0f);
+			break;
+		}
+		case 4:
+		{
+			renderer->setSprite(13);
+			renderer->setAnimationSpeed(10.0f);
+			break;
+		}
+		}
+	}
+	else if (airborne)
 	{
 		// Jumping
 		switch (level)
@@ -162,6 +180,7 @@ void PlayerState::onStart()
 	velocity = { 0.0f, 0.0f };
 	airborne = true;
 	punchEnabled = false;
+	punching = false;
 	doubleJumpEnabled = false;
 	doubleJumpUsed = false;
 

@@ -20,6 +20,7 @@ public:
 
 	// Abilities
 	bool punchEnabled;
+	bool punching;
 	bool doubleJumpEnabled;
 	bool doubleJumpUsed;
 

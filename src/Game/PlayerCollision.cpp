@@ -8,11 +8,6 @@ void PlayerCollision::updateCollisionBox()
 	playerBox.h = playerState->size.y;
 }
 
-void PlayerCollision::setRenderer(const std::shared_ptr<SpriteRenderer>& _renderer)
-{
-	renderer = _renderer;
-}
-
 void PlayerCollision::setPlayerState(const std::shared_ptr<PlayerState>& _playerState)
 {
 	playerState = _playerState;
