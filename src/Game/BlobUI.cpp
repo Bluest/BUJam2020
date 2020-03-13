@@ -18,7 +18,23 @@ void BlobUI::onDraw(SDL_Renderer* _renderer)
 {
 	SDL_RenderCopy(_renderer, sprite->texture, nullptr, &renderPosition);
 
-	barLength = 114.0f * float(collector->blobsCollected) / collector->blobsTo2;
+	if (collector->blobsCollected < collector->blobsTo2)
+	{
+		barLength = 114.0f * float(collector->blobsCollected) / collector->blobsTo2;
+	}
+	else if (collector->blobsCollected < collector->blobsTo3)
+	{
+		barLength = 114.0f * float(collector->blobsCollected - collector->blobsTo2) / (collector->blobsTo3 - collector->blobsTo2);
+	}
+	else if (collector->blobsCollected < collector->blobsTo4)
+	{
+		barLength = 114.0f * float(collector->blobsCollected - collector->blobsTo3) / (collector->blobsTo4 - collector->blobsTo3);
+	}
+	else
+	{
+		barLength = 114.0f;
+	}
+
 	bar.w = barLength;
 
 	SDL_SetRenderDrawColor(_renderer, 160, 64, 255, 255);

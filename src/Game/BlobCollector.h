@@ -10,7 +10,7 @@ public:
 
 	const int blobsTo2 = 18;
 	const int blobsTo3 = 40;
-	const int blobsTo4 = 100;
+	const int blobsTo4 = 64;
 
 	int blobsCollected;
 
