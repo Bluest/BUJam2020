@@ -136,7 +136,7 @@ void PlayerState::levelUp(const int& _level)
 		level = 4;
 		size = { 36.0f, 40.0f };
 		renderer->setRenderOffset({ 0.0f, -26.0f });
-		moveSpeed = 100.0f;
+		moveSpeed = 120.0f;
 		doubleJumpEnabled = true;
 		break;
 	}

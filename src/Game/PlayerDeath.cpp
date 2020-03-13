@@ -4,7 +4,7 @@
 void PlayerDeath::setPlayer(const std::shared_ptr<PlayerState>& _player)
 {
 	player = _player;
-	respawnPosition = { 70.0f, 1100.0f };
+	respawnPosition = { 70.0f, 1200.0f };
 }
 
 void PlayerDeath::setHazards(const std::list<SDL_Point>& _hazards)
@@ -24,6 +24,7 @@ void PlayerDeath::onUpdate()
 		if (SDL_PointInRect(&(*it), &collider))
 		{
 			getEntity()->transform.position = respawnPosition;
+			player->airborne = true;
 			getCore()->getCamera()->setPosition(getEntity()->transform.position);
 		}
 	}

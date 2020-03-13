@@ -173,6 +173,58 @@ void Game::Init()
 
 	// Hazards
 	std::list<SDL_Point> lavaPits;
+	{
+		lavaPits.push_back({ 1072, 1200 });
+		lavaPits.push_back({ 1088, 1200 });
+		lavaPits.push_back({ 1104, 1200 });
+		lavaPits.push_back({ 1200, 1200 });
+		lavaPits.push_back({ 1216, 1200 });
+		lavaPits.push_back({ 1232, 1200 });
+		lavaPits.push_back({ 496, 944 });
+		lavaPits.push_back({ 512, 944 });
+		lavaPits.push_back({ 528, 944 });
+		lavaPits.push_back({ 592, 944 });
+		lavaPits.push_back({ 608, 944 });
+		lavaPits.push_back({ 624, 944 });
+		lavaPits.push_back({ 688, 944 });
+		lavaPits.push_back({ 704, 944 });
+		lavaPits.push_back({ 720, 944 });
+		lavaPits.push_back({ 624, 656 });
+		lavaPits.push_back({ 640, 656 });
+		lavaPits.push_back({ 656, 656 });
+		lavaPits.push_back({ 720, 656 });
+		lavaPits.push_back({ 736, 656 });
+		lavaPits.push_back({ 752, 656 });
+		lavaPits.push_back({ 768, 656 });
+		lavaPits.push_back({ 784, 656 });
+		lavaPits.push_back({ 800, 656 });
+		lavaPits.push_back({ 816, 656 });
+		lavaPits.push_back({ 832, 656 });
+		lavaPits.push_back({ 848, 656 });
+		lavaPits.push_back({ 80, 464 });
+		lavaPits.push_back({ 96, 464 });
+		lavaPits.push_back({ 112, 464 });
+		lavaPits.push_back({ 128, 464 });
+		lavaPits.push_back({ 144, 464 });
+		lavaPits.push_back({ 160, 464 });
+		lavaPits.push_back({ 176, 464 });
+		lavaPits.push_back({ 192, 464 });
+		lavaPits.push_back({ 208, 464 });
+		lavaPits.push_back({ 592, 368 });
+		lavaPits.push_back({ 608, 368 });
+		lavaPits.push_back({ 624, 368 });
+		lavaPits.push_back({ 640, 368 });
+		lavaPits.push_back({ 656, 368 });
+		lavaPits.push_back({ 672, 368 });
+		lavaPits.push_back({ 688, 368 });
+		lavaPits.push_back({ 752, 368 });
+		lavaPits.push_back({ 768, 368 });
+		lavaPits.push_back({ 784, 368 });
+		lavaPits.push_back({ 800, 368 });
+		lavaPits.push_back({ 816, 368 });
+		lavaPits.push_back({ 832, 368 });
+		lavaPits.push_back({ 848, 368 });
+	}
 
 	playerDeath->setHazards(lavaPits);
 }
