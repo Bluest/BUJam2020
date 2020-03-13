@@ -49,10 +49,9 @@ void PlayerState::updateSprite()
 			case 2:
 			{
 				renderer->setSprite(3);
-				renderer->setAnimationSpeed(5.0f);
+				renderer->setAnimationSpeed(2.0f);
 			}
 			}
-
 		}
 		else
 		{
@@ -82,6 +81,7 @@ void PlayerState::levelUp(const int& _level)
 	case 2:
 	{
 		level = 2;
+		size = { 20.0f, 20.0f };
 		moveSpeed = 80.0f;
 		jumpHeight = -200.0f;
 	}

@@ -88,6 +88,8 @@ void PlayerCollision::onStart()
 
 void PlayerCollision::onUpdate()
 {
+	updateCollisionBox();
+
 	playerBox.x = getEntity()->transform.position.x - playerBox.w / 2;
 	playerBox.y = getEntity()->transform.position.y - playerBox.h;
 

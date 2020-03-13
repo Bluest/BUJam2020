@@ -27,7 +27,7 @@ void BlobCollector::onUpdate()
 		if (SDL_PointInRect(&blobPosition, &box))
 		{
 			(*it)->transform.position.y = -100.0f;
-			if (++blobsCollected == 18)
+			if (++blobsCollected == blobsTo2)
 			{
 				player->levelUp(2);
 			}

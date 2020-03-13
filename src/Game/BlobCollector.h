@@ -8,14 +8,14 @@ public:
 	void setPlayer(const std::shared_ptr<PlayerState>& _player);
 	void setCollectables(const std::list<std::shared_ptr<Entity>>& _blobs);
 
+	const int blobsTo2 = 3;
+	const int blobsTo3 = 6;
+	const int blobsTo4 = 40;
+
 	int blobsCollected;
 
 private:
 	void onUpdate();
-
-	const int blobsTo2 = 18;
-	const int blobsTo3 = 28;
-	const int blobsTo4 = 40;
 
 	std::shared_ptr<PlayerState> player;
 
