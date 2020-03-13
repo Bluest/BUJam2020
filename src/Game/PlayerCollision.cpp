@@ -28,7 +28,9 @@ void PlayerCollision::leftCollision()
 {
 	updateBoxEdges();
 
-	if (m_map->GetTile(leftX, topY).solid || m_map->GetTile(leftX, bottomY).solid)
+	if (m_map->GetTile(leftX, topY).solid ||
+		m_map->GetTile(leftX, bottomY).solid ||
+		m_map->GetTile(leftX, middleY).solid)
 	{
 		playerBox.x = previousPosition;
 	}
@@ -38,7 +40,9 @@ void PlayerCollision::rightCollision()
 {
 	updateBoxEdges();
 	
-	if (m_map->GetTile(rightX, topY).solid || m_map->GetTile(rightX, bottomY).solid)
+	if (m_map->GetTile(rightX, topY).solid ||
+		m_map->GetTile(rightX, bottomY).solid ||
+		m_map->GetTile(rightX, middleY).solid)
 	{
 		playerBox.x = previousPosition;
 	}
@@ -47,8 +51,6 @@ void PlayerCollision::rightCollision()
 void PlayerCollision::upCollision()
 {
 	updateBoxEdges();
-
-	int middleX = int(float(leftX + rightX) / 2);
 
 	if (m_map->GetTile(leftX, topY).solid ||
 		m_map->GetTile(rightX, topY).solid ||
@@ -63,14 +65,13 @@ void PlayerCollision::downCollision()
 {
 	updateBoxEdges();
 
-	int middleX = int(float(leftX + rightX) / 2);
-
 	if (m_map->GetTile(leftX, bottomY).solid ||
 		m_map->GetTile(rightX, bottomY).solid ||
 		m_map->GetTile(middleX, bottomY).solid)
 	{
 		playerBox.y = float(bottomY * tileSize - (playerBox.h + 1));
 		playerState->airborne = false;
+		playerState->doubleJumpUsed = false;
 		playerState->velocity.y = 0.0f;
 		playerState->updateSprite();
 	}
@@ -79,8 +80,6 @@ void PlayerCollision::downCollision()
 void PlayerCollision::checkWalkoff()
 {
 	updateBoxEdges();
-
-	int middleX = int(float(leftX + rightX) / 2);
 
 	if (!m_map->GetTile(leftX, bottomY + 1).solid &&
 		!m_map->GetTile(rightX, bottomY + 1).solid &&
@@ -126,8 +125,11 @@ void PlayerCollision::updateBoxEdges()
 {
 	leftX = int(playerBox.x / tileSize);
 	rightX = int((playerBox.x + playerBox.w) / tileSize);
+	middleX = int(float(leftX + rightX) / 2);
+
 	topY = int(playerBox.y / tileSize);
 	bottomY = int((playerBox.y + playerBox.h) / tileSize);
+	middleY = int(float(topY + bottomY) / 2);
 }
 
 void PlayerCollision::updateEntityPosition()

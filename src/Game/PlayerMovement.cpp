@@ -79,4 +79,10 @@ void PlayerMovement::jump()
 		playerState->airborne = true;
 		playerState->updateSprite();
 	}
+	else if (playerState->doubleJumpEnabled && !playerState->doubleJumpUsed)
+	{
+		playerState->velocity.y = playerState->jumpHeight;
+		playerState->doubleJumpUsed = true;
+		playerState->updateSprite();
+	}
 }

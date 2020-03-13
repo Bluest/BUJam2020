@@ -31,10 +31,13 @@ private:
 	int tileSize;
 
 	float previousPosition;
-
 	SDL_FRect playerBox;
+
 	int leftX;
+	int middleX;
 	int rightX;
+
 	int topY;
+	int middleY;
 	int bottomY;
 };

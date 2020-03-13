@@ -17,8 +17,11 @@ public:
 	float gravity;
 	SDL_FPoint velocity;
 	bool airborne;
-	// dead
-	// punching
+
+	// Abilities
+	bool punchEnabled;
+	bool doubleJumpEnabled;
+	bool doubleJumpUsed;
 
 private:
 	void onStart();

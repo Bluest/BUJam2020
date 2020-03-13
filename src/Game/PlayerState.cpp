@@ -37,6 +37,12 @@ void PlayerState::updateSprite()
 			renderer->setAnimationSpeed(10.0f);
 			break;
 		}
+		case 4:
+		{
+			renderer->setSprite(12);
+			renderer->setAnimationSpeed(10.0f);
+			break;
+		}
 		}
 	}
 	else
@@ -61,6 +67,12 @@ void PlayerState::updateSprite()
 			case 3:
 			{
 				renderer->setSprite(6);
+				renderer->setAnimationSpeed(2.0f);
+				break;
+			}
+			case 4:
+			{
+				renderer->setSprite(10);
 				renderer->setAnimationSpeed(2.0f);
 				break;
 			}
@@ -89,6 +101,12 @@ void PlayerState::updateSprite()
 				renderer->setAnimationSpeed(10.0f);
 				break;
 			}
+			case 4:
+			{
+				renderer->setSprite(11);
+				renderer->setAnimationSpeed(10.0f);
+				break;
+			}
 			}
 		}
 	}
@@ -110,6 +128,16 @@ void PlayerState::levelUp(const int& _level)
 	{
 		level = 3;
 		size = { 36.0f, 20.0f };
+		punchEnabled = true;
+		break;
+	}
+	case 4:
+	{
+		level = 4;
+		size = { 36.0f, 40.0f };
+		renderer->setRenderOffset({ 0.0f, -26.0f });
+		moveSpeed = 100.0f;
+		doubleJumpEnabled = true;
 		break;
 	}
 	}
@@ -133,6 +161,9 @@ void PlayerState::onStart()
 	gravity = 200.0f;
 	velocity = { 0.0f, 0.0f };
 	airborne = true;
+	punchEnabled = false;
+	doubleJumpEnabled = false;
+	doubleJumpUsed = false;
 
 	updateSprite();
 }

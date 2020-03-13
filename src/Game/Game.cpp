@@ -144,6 +144,10 @@ void Game::Init()
 		spriteRenderer->addSprite(sprites->use("player_walk3"));
 		spriteRenderer->addSprite(sprites->use("player_jump3"));
 		spriteRenderer->addSprite(sprites->use("player_punch3"));
+		spriteRenderer->addSprite(sprites->use("player_idle4"));
+		spriteRenderer->addSprite(sprites->use("player_walk4"));
+		spriteRenderer->addSprite(sprites->use("player_jump4"));
+		spriteRenderer->addSprite(sprites->use("player_punch4"));
 	}
 
 	std::shared_ptr<PlayerMovement> playerMovement = player->addComponent<PlayerMovement>();
@@ -192,11 +196,14 @@ void Game::loadSprites()
 	sprites->load("player_walk3", "../sprites/player_walk3.png", 10);
 	sprites->load("player_jump3", "../sprites/player_jump3.png", 20);
 	sprites->load("player_punch3", "../sprites/player_punch3.png", 10);
+	sprites->load("player_idle4", "../sprites/player_idle4.png", 2);
+	sprites->load("player_walk4", "../sprites/player_walk4.png", 10);
+	sprites->load("player_jump4", "../sprites/player_jump4.png", 20);
+	sprites->load("player_punch4", "../sprites/player_punch4.png", 10);
 	sprites->load("tileset", "../sprites/tileset.png", 1);
 	sprites->load("background", "../sprites/background_cropped.png", 1);
 	sprites->load("blob_ui", "../sprites/growth_bar.png", 1);
 	sprites->load("collectable_blob", "../sprites/collectable_blob.png", 8);
-	sprites->load("enemy1", "../sprites/Kurbeh.png", 10);
 }
 
 void Game::Run()

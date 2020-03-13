@@ -41,10 +41,10 @@ void BlobCollector::onUpdate()
 				player->levelUp(3);
 			}
 
-			//if (blobsCollected == blobsTo4)
-			//{
-			//	player->levelUp(4);
-			//}
+			if (blobsCollected == blobsTo4)
+			{
+				player->levelUp(4);
+			}
 		}
 	}
 }
