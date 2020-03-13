@@ -38,7 +38,7 @@ void Game::Init()
 	spriteRenderer->addSprite(sprites->use("player_idle1"));
 	spriteRenderer->addSprite(sprites->use("player_walk1"));
 	spriteRenderer->addSprite(sprites->use("player_jump1"));
-	spriteRenderer->addSprite(sprites->use("player_walk2"));
+	spriteRenderer->addSprite(sprites->use("player_idle2"));
 	spriteRenderer->addSprite(sprites->use("player_walk2"));
 	spriteRenderer->addSprite(sprites->use("player_jump2"));
 

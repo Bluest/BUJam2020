@@ -15,8 +15,6 @@ void PlayerMovement::setCollider(const std::shared_ptr<PlayerCollision>& _collid
 void PlayerMovement::onStart()
 {
 	input = getCore()->getInput();
-
-	playerState->updateSprite();
 }
 
 void PlayerMovement::onUpdate()
