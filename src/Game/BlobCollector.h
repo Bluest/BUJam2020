@@ -9,8 +9,8 @@ public:
 	void setCollectables(const std::list<std::shared_ptr<Entity>>& _blobs);
 
 	const int blobsTo2 = 18;
-	const int blobsTo3 = 28;
-	const int blobsTo4 = 40;
+	const int blobsTo3 = 40;
+	const int blobsTo4 = 100;
 
 	int blobsCollected;
 

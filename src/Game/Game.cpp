@@ -55,6 +55,16 @@ void Game::Init()
 		blobCoordinates.push_back({ 22, 39 });
 		blobCoordinates.push_back({ 23, 39 });
 		blobCoordinates.push_back({ 24, 39 });
+		blobCoordinates.push_back({ 28, 37 });
+		blobCoordinates.push_back({ 29, 37 });
+		blobCoordinates.push_back({ 35, 35 });
+		blobCoordinates.push_back({ 36, 35 });
+		blobCoordinates.push_back({ 40, 32 });
+		blobCoordinates.push_back({ 41, 32 });
+		blobCoordinates.push_back({ 40, 33 });
+		blobCoordinates.push_back({ 41, 33 });
+		blobCoordinates.push_back({ 26, 32 });
+		blobCoordinates.push_back({ 26, 33 });
 	}
 	
 	std::list<std::shared_ptr<Entity>> blobs;

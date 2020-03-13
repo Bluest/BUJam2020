@@ -29,6 +29,7 @@ void BlobCollector::onUpdate()
 			(*it)->transform.position.y = -100.0f;
 
 			++blobsCollected;
+			printf("%i\n", blobsCollected);
 
 			if (blobsCollected == blobsTo2)
 			{

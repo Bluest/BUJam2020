@@ -48,7 +48,11 @@ void PlayerCollision::upCollision()
 {
 	updateBoxEdges();
 
-	if (m_map->GetTile(leftX, topY).solid || m_map->GetTile(rightX, topY).solid)
+	int middleX = int(float(leftX + rightX) / 2);
+
+	if (m_map->GetTile(leftX, topY).solid ||
+		m_map->GetTile(rightX, topY).solid ||
+		m_map->GetTile(middleX, topY).solid)
 	{
 		playerBox.y = float(topY * tileSize + tileSize);
 		playerState->velocity.y = 0.0f;
@@ -59,7 +63,11 @@ void PlayerCollision::downCollision()
 {
 	updateBoxEdges();
 
-	if (m_map->GetTile(leftX, bottomY).solid || m_map->GetTile(rightX, bottomY).solid)
+	int middleX = int(float(leftX + rightX) / 2);
+
+	if (m_map->GetTile(leftX, bottomY).solid ||
+		m_map->GetTile(rightX, bottomY).solid ||
+		m_map->GetTile(middleX, bottomY).solid)
 	{
 		playerBox.y = float(bottomY * tileSize - (playerBox.h + 1));
 		playerState->airborne = false;
@@ -72,7 +80,11 @@ void PlayerCollision::checkWalkoff()
 {
 	updateBoxEdges();
 
-	if (!m_map->GetTile(leftX, bottomY + 1).solid && !m_map->GetTile(rightX, bottomY + 1).solid)
+	int middleX = int(float(leftX + rightX) / 2);
+
+	if (!m_map->GetTile(leftX, bottomY + 1).solid &&
+		!m_map->GetTile(rightX, bottomY + 1).solid &&
+		!m_map->GetTile(middleX, bottomY + 1).solid)
 	{
 		playerState->airborne = true;
 		playerState->updateSprite();

@@ -312,14 +312,14 @@ void Map::onDraw(SDL_Renderer* _renderer)
 			case Tile::blockType::LAVA:
 			{
 				frame.x = 4 * tileSize;
-				frame.y = 2 * tileSize;
+				frame.y = 3 * tileSize;
 				SDL_RenderCopy(_renderer, tileset->texture, &frame, &renderPosition);
 				break;
 			}
 			case Tile::blockType::LAVA_SURFACE:
 			{
 				frame.x = 4 * tileSize;
-				frame.y = 1 * tileSize;
+				frame.y = 2 * tileSize;
 				SDL_RenderCopy(_renderer, tileset->texture, &frame, &renderPosition);
 				break;
 			}
