@@ -6,7 +6,9 @@
 #include "Map.h"
 #include "Patrol.h"
 #include "PlayerCollision.h"
+#include "PlayerDeath.h"
 #include "PlayerMovement.h"
+#include "PlayerPunch.h"
 #include "PlayerState.h"
 
 Game::Game()
@@ -166,22 +168,13 @@ void Game::Init()
 	collector->setCollectables(blobs);
 	blobBar->setCollector(collector);
 
-	// Enemy
-	//std::shared_ptr<Entity> enemy = core->addEntity(2);
-	//enemy->transform.position.x = 250.0f;
-	//enemy->transform.position.y = 50.0f;
-	//enemy->transform.scale.x = 10.0f;
-	//enemy->transform.scale.y = 10.0f;
-	//
-	//std::shared_ptr<SpriteRenderer> test = enemy->addComponent<SpriteRenderer>();
-	//test->addSprite(sprites->use("enemy1"));
-	//test->setSprite(0);
-	//test->setAnimationSpeed(5.0f);
-	//
-	//std::shared_ptr<Patrol> patrol = enemy->addComponent<Patrol>();
-	//patrol->setRenderer(test);
-	//patrol->setMovementSpeed(20.0f);
-	//patrol->setEnd(300.0f);
+	std::shared_ptr<PlayerDeath> playerDeath = player->addComponent<PlayerDeath>();
+	playerDeath->setPlayer(playerState);
+
+	// Hazards
+	std::list<SDL_Point> lavaPits;
+
+	playerDeath->setHazards(lavaPits);
 }
 
 void Game::loadSprites()

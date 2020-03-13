@@ -51,8 +51,12 @@ add_executable(Game
 	src/Game/Patrol.h
 	src/Game/PlayerCollision.cpp
 	src/Game/PlayerCollision.h
+	src/Game/PlayerDeath.cpp
+	src/Game/PlayerDeath.h
 	src/Game/PlayerMovement.cpp
 	src/Game/PlayerMovement.h
+	src/Game/PlayerPunch.cpp
+	src/Game/PlayerPunch.h
 	src/Game/PlayerState.cpp
 	src/Game/PlayerState.h
 )
