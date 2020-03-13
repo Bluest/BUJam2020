@@ -40,6 +40,8 @@ add_executable(Game
 	src/Game/BlobCollector.h
 	src/Game/BlobParticle.cpp
 	src/Game/BlobParticle.h
+	src/Game/BlobUI.cpp
+	src/Game/BlobUI.h
 	src/Game/Game.cpp
 	src/Game/Game.h
 	src/Game/main.cpp

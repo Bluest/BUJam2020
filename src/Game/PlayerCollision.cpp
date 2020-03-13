@@ -2,10 +2,10 @@
 #include "PlayerState.h"
 #include "Map.h"
 
-void PlayerCollision::updateCollisionBoxSize(const float& _w, const float& _h)
+void PlayerCollision::updateCollisionBox()
 {
-	playerBox.w = _w;
-	playerBox.h = _h;
+	playerBox.w = playerState->size.x;
+	playerBox.h = playerState->size.y;
 }
 
 void PlayerCollision::setRenderer(const std::shared_ptr<SpriteRenderer>& _renderer)
@@ -81,8 +81,7 @@ void PlayerCollision::checkWalkoff()
 
 void PlayerCollision::onStart()
 {
-	playerBox.w = 16.0f;
-	playerBox.h = 16.0f;
+	updateCollisionBox();
 
 	previousPosition = getEntity()->transform.position.x - playerBox.w / 2;
 }

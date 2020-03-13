@@ -6,7 +6,8 @@ class PlayerState;
 class PlayerCollision : public Component
 {
 public:
-	void updateCollisionBoxSize(const float& _w, const float& _h);
+	void updateCollisionBox();
+
 	void setRenderer(const std::shared_ptr<SpriteRenderer>& _renderer);
 	void setPlayerState(const std::shared_ptr<PlayerState>& _playerState);
 	void setMap(const std::shared_ptr<Map>& _map);

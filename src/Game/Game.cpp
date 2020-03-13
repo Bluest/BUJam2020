@@ -1,6 +1,7 @@
 #include "BackgroundRenderer.h"
 #include "BlobCollector.h"
 #include "BlobParticle.h"
+#include "BlobUI.h"
 #include "Game.h"
 #include "Map.h"
 #include "Patrol.h"
@@ -30,18 +31,39 @@ void Game::Init()
 	bgRenderer->setImage(sprites->use("background"));
 
 	// Blobs
-	std::vector<SDL_FPoint> blobPositions;
-	blobPositions.push_back({ 90.0f, 1070.0f });
-	blobPositions.push_back({ 100.0f, 1070.0f });
-	blobPositions.push_back({ 110.0f, 1070.0f });
-	blobPositions.push_back({ 120.0f, 1070.0f });
-	blobPositions.push_back({ 130.0f, 1070.0f });
-
+	std::vector<SDL_Point> blobCoordinates;
+	blobCoordinates.push_back({ 3, 34 });
+	blobCoordinates.push_back({ 4, 34 });
+	blobCoordinates.push_back({ 5, 33 });
+	blobCoordinates.push_back({ 6, 33 });
+	blobCoordinates.push_back({ 8, 34 });
+	blobCoordinates.push_back({ 9, 34 });
+	blobCoordinates.push_back({ 2, 37 });
+	blobCoordinates.push_back({ 3, 37 });
+	blobCoordinates.push_back({ 1, 38 });
+	blobCoordinates.push_back({ 2, 38 });
+	blobCoordinates.push_back({ 3, 38 });
+	blobCoordinates.push_back({ 4, 38 });
+	blobCoordinates.push_back({ 8, 39 });
+	blobCoordinates.push_back({ 11, 39 });
+	blobCoordinates.push_back({ 11, 38 });
+	blobCoordinates.push_back({ 11, 37 });
+	blobCoordinates.push_back({ 11, 36 });
+	blobCoordinates.push_back({ 15, 39 });
+	blobCoordinates.push_back({ 21, 39 });
+	blobCoordinates.push_back({ 22, 39 });
+	blobCoordinates.push_back({ 23, 39 });
+	blobCoordinates.push_back({ 24, 39 });
+	
 	std::list<std::shared_ptr<Entity>> blobs;
-	for (size_t i = 0; i < blobPositions.size(); ++i)
+	for (size_t i = 0; i < blobCoordinates.size(); ++i)
 	{
 		std::shared_ptr<Entity> blob = core->addEntity(3);
-		blob->transform.position = blobPositions[i];
+		SDL_FPoint blobPosition;
+		blobPosition.x = float(blobCoordinates[i].x * map->tileSize + map->tileSize / 2);
+		blobPosition.y = float(blobCoordinates[i].y * map->tileSize + map->tileSize / 2);
+		blob->transform.position = blobPosition;
+
 		std::shared_ptr<SpriteRenderer> blobSprite = blob->addComponent<SpriteRenderer>();
 		blobSprite->addSprite(sprites->use("collectable_blob"));
 		blobSprite->setSprite(0);
@@ -50,6 +72,11 @@ void Game::Init()
 
 		blobs.push_back(blob);
 	}
+
+	// Blob UI
+	std::shared_ptr<Entity> ui = core->addEntity(5);
+	std::shared_ptr<BlobUI> blobBar = ui->addComponent<BlobUI>();
+	blobBar->setSprite(sprites->use("blob_ui"));
 
 	// Player
 	std::shared_ptr<Entity> player = core->addEntity(2);
@@ -77,6 +104,8 @@ void Game::Init()
 
 	std::shared_ptr<BlobCollector> collector = player->addComponent<BlobCollector>();
 	collector->setPlayer(playerState);
+	collector->setCollectables(blobs);
+	blobBar->setCollector(collector);
 
 	// Enemy
 	//std::shared_ptr<Entity> enemy = core->addEntity(2);
@@ -106,6 +135,7 @@ void Game::loadSprites()
 	sprites->load("player_jump2", "../sprites/player_jump2.png", 20);
 	sprites->load("tileset", "../sprites/tileset.png", 1);
 	sprites->load("background", "../sprites/background_cropped.png", 1);
+	sprites->load("blob_ui", "../sprites/growth_bar.png", 1);
 	sprites->load("collectable_blob", "../sprites/collectable_blob.png", 8);
 	sprites->load("enemy1", "../sprites/Kurbeh.png", 10);
 }

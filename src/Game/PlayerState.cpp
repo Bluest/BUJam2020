@@ -19,13 +19,13 @@ void PlayerState::updateSprite()
 		// Jumping
 		switch (level)
 		{
-		case 0:
+		case 1:
 		{
 			renderer->setSprite(2);
 			renderer->setAnimationSpeed(10.0f);
 			break;
 		}
-		case 1:
+		case 2:
 		{
 			renderer->setSprite(5);
 			renderer->setAnimationSpeed(10.0f);
@@ -40,13 +40,13 @@ void PlayerState::updateSprite()
 			// Idle
 			switch (level)
 			{
-			case 0:
+			case 1:
 			{
 				renderer->setSprite(0);
 				renderer->setAnimationSpeed(5.0f);
 				break;
 			}
-			case 1:
+			case 2:
 			{
 				renderer->setSprite(3);
 				renderer->setAnimationSpeed(5.0f);
@@ -59,13 +59,13 @@ void PlayerState::updateSprite()
 			// Walking
 			switch (level)
 			{
-			case 0:
+			case 1:
 			{
 				renderer->setSprite(1);
 				renderer->setAnimationSpeed(10.0f);
 				break;
 			}
-			case 1:
+			case 2:
 			{
 				renderer->setSprite(4);
 				renderer->setAnimationSpeed(10.0f);
@@ -79,13 +79,15 @@ void PlayerState::levelUp(const int& _level)
 {
 	switch (_level)
 	{
-	case 1:
+	case 2:
 	{
-		level = 1;
+		level = 2;
 		moveSpeed = 80.0f;
 		jumpHeight = -200.0f;
 	}
 	}
+
+	updateSprite();
 }
 
 void PlayerState::setRenderer(const std::shared_ptr<SpriteRenderer>& _renderer)
@@ -96,8 +98,9 @@ void PlayerState::setRenderer(const std::shared_ptr<SpriteRenderer>& _renderer)
 
 void PlayerState::onStart()
 {
-	level = 0;
+	level = 1;
 
+	size = { 16.0f, 16.0f };
 	moveSpeed = 50.0f;
 	jumpHeight = -120.0f;
 	gravity = 200.0f;

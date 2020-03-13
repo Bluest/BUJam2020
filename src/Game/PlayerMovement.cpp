@@ -48,6 +48,12 @@ void PlayerMovement::onUpdate()
 		playerState->updateSprite();
 	}
 
+	if (!input->keyHold(SDLK_a) && !input->keyHold(SDLK_d))
+	{
+		playerState->velocity.x = 0.0f;
+		playerState->updateSprite();
+	}
+
 	if (input->keyPress(SDLK_k))
 	{
 		jump();
